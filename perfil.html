@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marguerite Voile — La Cour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root { --blk: #070202; --drk: #110404; --drk2: #1b0606; --red: #8b1a1a; --red2: #6b1010; --gld: #c9a97a; --gld2: #e8d4a8; --crm: #f4ede0; --crm2: #ece4d4; --txt: #1c0a0a; --mut: #5c3030; }
+    body { background: var(--blk); color: var(--crm); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 18px; line-height: 1.75; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--blk); } ::-webkit-scrollbar-thumb { background: var(--red2); }
+    a { color: inherit; text-decoration: none; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; height: 64px; background: linear-gradient(to bottom, rgba(7,2,2,.96) 60%, transparent); }
+    .nav-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--crm); }
+    .nav-logo em { font-style: normal; color: var(--red); }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(244,237,224,.42); transition: color .3s; }
+    nav ul a:hover, nav ul a.on { color: var(--crm); }
+
+    .lbl { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: var(--red); display: block; }
+    .divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
+    .dl { height: 1px; flex: 1; background: linear-gradient(to right, var(--red2), transparent); }
+    .dl.r { background: linear-gradient(to left, var(--red2), transparent); }
+    .dd { width: 4px; height: 4px; background: var(--red); transform: rotate(45deg); flex-shrink: 0; }
+    .btn { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; padding: 10px 22px; border: 1px solid rgba(139,26,26,.42); color: rgba(244,237,224,.6); display: inline-block; transition: border-color .3s, color .3s, background .3s; margin-right: 8px; }
+    .btn:hover { border-color: var(--red); color: var(--crm); background: rgba(139,26,26,.1); }
+
+    /* HERO SECTION */
+    #ph {
+      padding: 100px 56px 0;
+      display: grid; grid-template-columns: 320px 1fr;
+      gap: 0; max-width: 1140px; margin: 0 auto;
+      align-items: end;
+    }
+    .ph-img { position: relative; }
+    .img-ph-tall { width: 100%; height: 450px; background: var(--drk2); border: 1px solid rgba(139,26,26,.18); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: rgba(139,26,26,.25); gap: 10px; position: relative; }
+    .img-ph-tall-n { font-family: 'Playfair Display', Georgia, serif; font-size: 40px; color: rgba(139,26,26,.1); }
+    .img-ph-tall::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(to top, var(--blk), transparent); }
+    .img-inner-border { position: absolute; inset: 10px; border: 1px solid rgba(139,26,26,.2); pointer-events: none; }
+
+    .ph-info { padding: 0 0 40px 56px; }
+    .ph-clan { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 5px; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 14px; }
+    .ph-name { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(34px, 4.5vw, 60px); font-weight: 900; text-transform: uppercase; letter-spacing: 3px; line-height: .95; color: var(--crm); margin-bottom: 20px; }
+    .ph-sub { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 15px; font-style: italic; color: rgba(244,237,224,.38); margin-bottom: 28px; }
+
+    .stats { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 28px; }
+    .stat { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 1px; text-transform: uppercase; padding: 5px 12px; background: var(--drk2); border: 1px solid rgba(139,26,26,.22); color: rgba(244,237,224,.5); }
+    .stat b { color: var(--gld); font-weight: 400; margin-left: 4px; }
+
+    .ph-quote { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 16px; font-style: italic; color: rgba(244,237,224,.38); line-height: 1.6; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(139,26,26,.12); }
+
+    /* BODY */
+    #body { max-width: 1140px; margin: 0 auto; padding: 60px 56px 80px; }
+    .body-grid { display: grid; grid-template-columns: 1fr 360px; gap: 56px; align-items: start; }
+
+    /* HISTORY */
+    .history h3 { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: var(--red); padding-bottom: 10px; border-bottom: 1px solid rgba(139,26,26,.18); margin-bottom: 20px; }
+    .history p { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 17px; color: rgba(244,237,224,.65); line-height: 1.9; margin-bottom: 18px; text-align: justify; }
+    .history p strong { color: var(--gld); font-weight: 400; font-style: italic; }
+    .history p em { color: rgba(244,237,224,.42); }
+    .quote-blk { border-left: 2px solid var(--red2); padding: 14px 18px; background: rgba(139,26,26,.07); font-style: italic; font-size: 15px; color: rgba(244,237,224,.48); margin: 20px 0; line-height: 1.6; }
+
+    /* SIDEBAR */
+    .sidebar { }
+    .attr-block { background: var(--drk2); padding: 24px; margin-bottom: 2px; }
+    .attr-block-title { font-family: 'Montserrat', sans-serif; font-size: 7px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); padding-bottom: 10px; border-bottom: 1px solid rgba(139,26,26,.18); margin-bottom: 14px; }
+    .attr-row { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; border-bottom: 1px solid rgba(244,237,224,.04); }
+    .attr-row:last-child { border-bottom: none; }
+    .attr-lbl { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(244,237,224,.3); }
+    .attr-val { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 15px; color: var(--crm); }
+    .attr-val.red { color: var(--red); }
+    .attr-val.dim { color: rgba(244,237,224,.38); }
+
+    .power-block { background: var(--drk); border: 1px solid rgba(139,26,26,.18); padding: 22px; margin-bottom: 2px; }
+    .power-name { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--crm); display: block; margin-bottom: 8px; }
+    .power-desc { font-family: 'Montserrat', sans-serif; font-size: 10px; color: rgba(244,237,224,.42); line-height: 1.65; }
+    .power-weak { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(139,26,26,.14); font-family: 'Montserrat', sans-serif; font-size: 9px; color: rgba(139,26,26,.55); font-style: italic; line-height: 1.5; }
+
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 56px; }
+    .gal-item { height: 180px; background: var(--drk2); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: rgba(139,26,26,.25); gap: 6px; border: 1px solid rgba(139,26,26,.1); transition: border-color .3s; }
+    .gal-item:hover { border-color: rgba(139,26,26,.3); }
+
+    .char-nav { display: flex; justify-content: space-between; padding: 28px 0; margin-top: 56px; border-top: 1px solid rgba(139,26,26,.18); }
+    .char-nav a { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: rgba(244,237,224,.35); transition: color .3s; }
+    .char-nav a:hover { color: var(--crm); }
+
+    footer { padding: 36px 56px; border-top: 1px solid rgba(139,26,26,.18); display: flex; align-items: center; justify-content: space-between; }
+    .foot-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--crm); }
+    .foot-logo em { font-style: normal; color: var(--red); }
+    .foot-meta { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(244,237,224,.22); }
+
+    @media (max-width: 860px) {
+      nav { padding: 0 24px; } nav ul { display: none; }
+      #ph { grid-template-columns: 1fr; padding: 100px 24px 0; }
+      .ph-info { padding: 28px 0 0; }
+      .body-grid { grid-template-columns: 1fr; gap: 40px; }
+      #body { padding: 40px 24px 60px; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      footer { padding: 30px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">La <em>Cour</em></div>
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="historia.html">A Corte</a></li>
+    <li><a href="personagens.html" class="on">Personagens</a></li>
+    <li><a href="momento-atual.html">O Momento</a></li>
+    <li><a href="sistema.html">O Sistema</a></li>
+    <li><a href="#" target="_blank">Jogos</a></li>
+  </ul>
+</nav>
+
+<section id="ph">
+  <div class="ph-img">
+    <div class="img-ph-tall">
+      <span class="img-ph-tall-n">09</span>
+      <span>Retrato · 320 × 450 px</span>
+      <div class="img-inner-border"></div>
+    </div>
+  </div>
+  <div class="ph-info">
+    <span class="ph-clan">Clã Voile · Les Établis · 178 anos</span>
+    <h1 class="ph-name">Marguerite<br/>Voile</h1>
+    <p class="ph-sub">Abraçada em 1847, Paris · Antes: Atriz</p>
+    <div class="stats">
+      <span class="stat">SOC<b>04</b></span>
+      <span class="stat">EGO<b>03</b></span>
+      <span class="stat">SIG<b>03</b></span>
+      <span class="stat">FIS<b>01</b></span>
+      <span class="stat">VEL<b>02</b></span>
+      <span class="stat">HP<b>50</b></span>
+    </div>
+    <div class="divider">
+      <div class="dl"></div><div class="dd"></div><div class="dl r"></div>
+    </div>
+    <p class="ph-quote">&ldquo;Ela nunca esteve no centro da sala. Mas sabia de tudo que acontecia nela.&rdquo;</p>
+    <div style="margin-top:28px;">
+      <a href="personagens.html" class="btn">← Personagens</a>
+      <a href="#historia" class="btn">Ver história</a>
+    </div>
+  </div>
+</section>
+
+<section id="body">
+  <div class="body-grid">
+
+    <div class="history" id="historia">
+      <h3>Breve Histórico</h3>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur facilisis purus sit hac sodales nullam. Posuere aliquam facilisis, semper sociosqu taciti leo per. Ex montes nunc sem rhoncus torquent; id integer lectus.</p>
+      <p>Taciti duis maecenas ullamcorper consequat accumsan vitae venenatis est. <strong>Abraçada em 1847</strong>, atriz antes — nunca parou de performar. A Établie mais bem informada da Corte: não por poderes de leitura, mas porque as pessoas falam livremente perto de quem parece não importar.</p>
+      <div class="quote-blk">"Não por poderes de leitura, mas porque as pessoas falam livremente perto de quem parece não importar."</div>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Magna hac at hendrerit in hendrerit. Leo accumsan ante ultrices dapibus venenatis fames nunc habitant ridiculus. <em>Lobortis habitasse senectus dis malesuada finibus venenatis auctor.</em></p>
+
+      <h3 style="margin-top:36px;">Traço de Personalidade</h3>
+      <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Curabitur facilisis purus sit hac sodales nullam. Posuere aliquam facilisis, semper sociosqu taciti leo per. Ex montes nunc sem rhoncus torquent; id integer lectus.</p>
+      <p>Taciti duis maecenas ullamcorper consequat accumsan vitae venenatis est. Ac lacus nullam per cubilia fusce porta condimentum ante vulputate, fusce facilisis.</p>
+
+      <div class="gallery">
+        <div class="gal-item"><span>Cena 01</span><span style="opacity:.5">400 × 180 px</span></div>
+        <div class="gal-item"><span>Cena 02</span><span style="opacity:.5">400 × 180 px</span></div>
+        <div class="gal-item"><span>Cena 03</span><span style="opacity:.5">400 × 180 px</span></div>
+      </div>
+
+      <div class="char-nav">
+        <a href="personagens.html">← Voltar para Personagens</a>
+        <a href="personagens.html">Próximo Personagem →</a>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="attr-block">
+        <div class="attr-block-title">Identidade</div>
+        <div class="attr-row"><span class="attr-lbl">Nome</span><span class="attr-val">Marguerite Voile</span></div>
+        <div class="attr-row"><span class="attr-lbl">Clã</span><span class="attr-val red">Voile</span></div>
+        <div class="attr-row"><span class="attr-lbl">Idade</span><span class="attr-val">178 anos</span></div>
+        <div class="attr-row"><span class="attr-lbl">Abraço</span><span class="attr-val">1847, Paris</span></div>
+        <div class="attr-row"><span class="attr-lbl">Posto</span><span class="attr-val">Les Établis</span></div>
+        <div class="attr-row"><span class="attr-lbl">Criador</span><span class="attr-val dim">desconhecido</span></div>
+      </div>
+
+      <div class="power-block">
+        <div class="attr-block-title">Poder de Clã</div>
+        <span class="power-name">Domínio das Sombras</span>
+        <p class="power-desc">Camuflagem, ilusão localizada, passo silencioso, manipulação de luz. Anciões Voile podem se deslocar como névoa através de sombras.</p>
+        <p class="power-weak">Fraqueza: Compulsão pela invisibilidade — abandono involuntário de aliados em situações de estresse.</p>
+      </div>
+
+      <div class="power-block">
+        <div class="attr-block-title">Habilidade Ativa</div>
+        <span class="power-name">Máscara Emocional</span>
+        <p class="power-desc">Suprime completamente qualquer sinal emocional próprio. Torna-se ilegível para leituras de superfície. Aliados presentes +1 EGO. Dura até o fim da cena.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">La <em>Cour</em></div>
+  <div class="foot-meta">Paris · 2025 · RPG</div>
+</footer>
+
+</body>
+</html>

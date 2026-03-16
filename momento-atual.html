@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Momento — La Cour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    :root { --blk:#070202; --drk:#110404; --drk2:#1b0606; --red:#8b1a1a; --red2:#6b1010; --gld:#c9a97a; --crm:#f4ede0; --crm2:#ece4d4; --txt:#1c0a0a; --mut:#5c3030; }
+    body { background:var(--blk); color:var(--crm); font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; line-height:1.75; overflow-x:hidden; }
+    ::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-track{background:var(--blk)} ::-webkit-scrollbar-thumb{background:var(--red2)}
+    a { color:inherit; text-decoration:none; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 56px; height:64px; background:linear-gradient(to bottom, rgba(7,2,2,.97) 60%, transparent); }
+    .nav-logo { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--crm); }
+    .nav-logo em { font-style:normal; color:var(--red); }
+    nav ul { list-style:none; display:flex; gap:28px; }
+    nav ul a { font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(244,237,224,.4); transition:color .3s; }
+    nav ul a:hover, nav ul a.on { color:var(--crm); }
+
+    .lbl { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:4px; text-transform:uppercase; color:var(--red); display:block; }
+    .divider { display:flex; align-items:center; gap:12px; margin:20px 0; }
+    .dl { height:1px; flex:1; background:linear-gradient(to right,var(--red2),transparent); }
+    .dl.r { background:linear-gradient(to left,var(--red2),transparent); }
+    .dd { width:4px; height:4px; background:var(--red); transform:rotate(45deg); flex-shrink:0; }
+
+    /* PAGE HEADER */
+    #ph { padding:150px 56px 70px; text-align:center; position:relative; overflow:hidden; }
+    #ph::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center bottom, rgba(139,26,26,.1) 0%, transparent 65%); }
+    #ph h1 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(44px,7vw,88px); font-weight:900; text-transform:uppercase; letter-spacing:3px; color:var(--crm); line-height:.95; }
+    #ph .sub { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px; font-style:italic; color:rgba(244,237,224,.38); margin-top:16px; }
+
+    /* MAIN CONTENT */
+    .content-wrap { max-width:860px; margin:0 auto; padding:0 56px 100px; }
+
+    /* OPENING QUOTE */
+    .opening-quote { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(20px,2.5vw,28px); font-style:italic; color:rgba(244,237,224,.55); line-height:1.5; text-align:center; padding:56px 0 48px; border-bottom:1px solid rgba(139,26,26,.15); margin-bottom:56px; }
+    .opening-quote::before { content:'"'; font-size:80px; color:rgba(139,26,26,.15); display:block; line-height:.5; margin-bottom:20px; font-style:normal; }
+
+    /* SECTIONS */
+    .section { margin-bottom:60px; }
+    .section h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(20px,2.5vw,30px); font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--crm); margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid rgba(139,26,26,.18); }
+    .section p { font-family:'Cormorant Garamond',Georgia,serif; font-size:17px; color:rgba(244,237,224,.68); line-height:1.9; margin-bottom:18px; text-align:justify; }
+    .section p strong { color:var(--gld); font-weight:400; font-style:italic; }
+    .section p em { color:rgba(244,237,224,.42); font-style:italic; }
+
+    /* TENSION BAR */
+    .tension-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; margin:40px 0; }
+    .tension-item { background:var(--drk2); padding:24px 22px; border-left:2px solid rgba(139,26,26,.2); transition:border-color .3s; }
+    .tension-item:hover { border-color:var(--red); }
+    .tension-lbl { font-family:'Montserrat',sans-serif; font-size:7px; letter-spacing:3px; text-transform:uppercase; color:var(--red); display:block; margin-bottom:7px; }
+    .tension-title { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; color:var(--crm); display:block; margin-bottom:8px; }
+    .tension-desc { font-family:'Montserrat',sans-serif; font-size:10px; color:rgba(244,237,224,.42); line-height:1.6; }
+
+    /* SIDEBAR CALLOUT */
+    .callout { background:var(--drk2); border-left:3px solid var(--red2); padding:28px 28px; margin:36px 0; }
+    .callout p { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px; font-style:italic; color:rgba(244,237,224,.55); line-height:1.75; margin-bottom:0; text-align:left; }
+    .callout p strong { color:var(--gld); font-style:normal; }
+
+    /* CREAM PANEL */
+    .cream-section { background:var(--crm); padding:60px 56px; }
+    .cream-section h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(20px,2.5vw,28px); font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--txt); margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid rgba(139,26,26,.2); }
+    .cream-section p { font-family:'Cormorant Garamond',Georgia,serif; font-size:17px; color:var(--txt); line-height:1.9; margin-bottom:16px; text-align:justify; }
+    .cream-section p strong { color:var(--red); font-weight:500; }
+    .cream-wrap { max-width:860px; margin:0 auto; }
+
+    /* RUMORES */
+    .rumores { padding:70px 56px; }
+    .rumores-wrap { max-width:860px; margin:0 auto; }
+    .rumores h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(20px,2.5vw,28px); font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--crm); margin-bottom:36px; padding-bottom:12px; border-bottom:1px solid rgba(139,26,26,.18); }
+    .rumor { display:flex; gap:18px; padding:18px 0; border-bottom:1px solid rgba(139,26,26,.08); }
+    .rumor:last-child { border-bottom:none; }
+    .rumor-dot { width:6px; height:6px; background:var(--red2); transform:rotate(45deg); flex-shrink:0; margin-top:10px; }
+    .rumor p { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px; font-style:italic; color:rgba(244,237,224,.55); line-height:1.6; }
+    .rumor p strong { color:rgba(244,237,224,.75); font-style:normal; font-weight:400; }
+
+    footer { padding:36px 56px; border-top:1px solid rgba(139,26,26,.15); display:flex; align-items:center; justify-content:space-between; }
+    .foot-logo { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--crm); }
+    .foot-logo em { font-style:normal; color:var(--red); }
+    .foot-meta { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:rgba(244,237,224,.2); }
+
+    @media(max-width:780px){
+      nav{padding:0 24px} nav ul{display:none}
+      #ph, .content-wrap, .cream-section, .rumores{padding-left:24px; padding-right:24px}
+      .tension-grid{grid-template-columns:1fr}
+      footer{padding:30px 24px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">La <em>Cour</em></div>
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="historia.html">A Corte</a></li>
+    <li><a href="momento-atual.html" class="on">O Momento</a></li>
+    <li><a href="personagens.html">Personagens</a></li>
+    <li><a href="sistema.html">O Sistema</a></li>
+    <li><a href="#" target="_blank">Jogos</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<section id="ph">
+  <span class="lbl" style="text-align:center;margin-bottom:14px;">Paris · 2025</span>
+  <h1>O Momento<br/><span style="font-size:clamp(22px,3vw,40px);font-weight:400;font-style:italic;color:var(--gld);letter-spacing:8px;">Atual</span></h1>
+  <p class="sub">O que está em movimento. O que ainda não se revelou.</p>
+  <div class="divider" style="max-width:300px;margin:24px auto 0;">
+    <div class="dl"></div><div class="dd"></div><div class="dl r"></div>
+  </div>
+</section>
+
+<!-- ABERTURA -->
+<div class="content-wrap">
+
+  <div class="opening-quote">
+    Trezentos e vinte e sete anos de silêncio não terminam com um grito.<br/>Terminam com alguém percebendo que a sala está mais quieta do que deveria.
+  </div>
+
+  <!-- O CLIMA -->
+  <div class="section">
+    <span class="lbl" style="margin-bottom:10px;">O Clima</span>
+    <h2>Algo está diferente</h2>
+    <p>Paris não mudou. O Sena continua escuro à meia-noite, as ruas do Marais ainda guardam o cheiro de pedra molhada e história acumulada. Mas há algo na cidade que os mais velhos reconhecem e os mais novos apenas sentem — uma tensão que não tem nome ainda, mas que tem peso.</p>
+    <p>O Conselho continua se reunindo. As decisões continuam sendo tomadas. A superfície de La Cour permanece intacta. Mas quem presta atenção percebe: <strong>as reuniões duram mais, os votos não são mais unânimes, e alguns Établis começaram a desaparecer sem aviso</strong>.</p>
+    <p>Não há declaração de crise. Há apenas o silêncio específico de quem sabe que algo foi perturbado e prefere não ser o primeiro a dizer em voz alta.</p>
+  </div>
+
+  <!-- TENSÕES -->
+  <div class="tension-grid">
+    <div class="tension-item">
+      <span class="tension-lbl">Interno</span>
+      <span class="tension-title">A Rachadura no Conselho</span>
+      <p class="tension-desc">Viktor e Rémi chegaram a um impasse que nenhum dos dois está disposto a resolver publicamente. Isabeau observa em silêncio — o que é, em si mesmo, um sinal de que ela sabe mais do que os outros sobre o que está em jogo.</p>
+    </div>
+    <div class="tension-item">
+      <span class="tension-lbl">Externo</span>
+      <span class="tension-title">Les Dévoreurs à Vista</span>
+      <p class="tension-desc">Ataques atribuídos aos Dévoreurs aumentaram 40% nos últimos seis meses. O padrão mudou — mais cirúrgicos, mais informados. Como se alguém lhes tivesse dado acesso a informações internas da Corte.</p>
+    </div>
+    <div class="tension-item">
+      <span class="tension-lbl">Ameaça Mortal</span>
+      <span class="tension-title">La Société Solaire</span>
+      <p class="tension-desc">Dois Établis eliminados em três meses. Madame Leclair parece saber onde estão os Eternos antes de que eles se movam. A teoria mais perturbadora circula nos bastidores: há um informante dentro da Corte.</p>
+    </div>
+    <div class="tension-item">
+      <span class="tension-lbl">O Esquecido</span>
+      <span class="tension-title">Le Premier se Aproxima</span>
+      <p class="tension-desc">Ninguém diz o nome. Mas certos Eternos mais velhos começaram a ter os mesmos sonhos — uma câmara sem janelas, uma presença sem forma, e a sensação inequívoca de ser lembrado por algo que deveria ter sido esquecido.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>O Pacto expirou há <strong>vinte e sete anos</strong>. Le Premier não agiu imediatamente. Isso não foi paciência. Foi preparação.</p>
+  </div>
+
+  <!-- A SITUAÇÃO DOS PERSONAGENS -->
+  <div class="section" style="margin-top:56px;">
+    <span class="lbl" style="margin-bottom:10px;">Onde tudo começa</span>
+    <h2>A Noite que Muda Tudo</h2>
+    <p>Séraphin convocou. Não pediu, não sugeriu — convocou, com a autoridade de quem sabe que será atendido. Um endereço no 8º arrondissement, uma hora antes do amanhecer, sem explicação.</p>
+    <p>Os convocados chegam separados, sem saber quem mais foi chamado. A sala os aguarda: velha, cara, e com uma mesa sobre a qual está um único documento. Não tem título. Começa com as palavras: <em>"O que está prestes a acontecer não pode ser impedido. Mas pode ser direcionado."</em></p>
+    <p>Séraphin não está na sala quando eles chegam. <strong>Mas há alguém esperando no lugar dele.</strong></p>
+  </div>
+
+</div>
+
+<!-- O QUE SE SABE -->
+<section class="cream-section">
+  <div class="cream-wrap">
+    <span class="lbl" style="color:var(--red);margin-bottom:12px;">O que circula</span>
+    <h2>Fatos & Incertezas</h2>
+    <p>Algumas coisas são <strong>conhecidas</strong>: o Pacto expirou, a Société Solaire está mais ativa do que nunca, e dois Établis desapareceram sem rastro no último trimestre.</p>
+    <p>Algumas coisas são <strong>suspeitadas</strong>: há um informante. Alguém no círculo próximo ao Conselho passa informações para fora. A questão não é se — é quem, e para quem.</p>
+    <p>E há o que ninguém ainda colocou em palavras: a sensação crescente de que tudo que está acontecendo — os ataques, os desaparecimentos, a Société, os sonhos — não são eventos separados. São movimentos de uma coisa maior que ainda não mostrou sua forma completa.</p>
+  </div>
+</section>
+
+<!-- RUMORES -->
+<section class="rumores">
+  <div class="rumores-wrap">
+    <span class="lbl" style="margin-bottom:12px;">Nos bastidores</span>
+    <h2>O que se Ouve</h2>
+
+    <div class="rumor">
+      <div class="rumor-dot"></div>
+      <p>Dizem que Isabeau du Néant passou <strong>três noites consecutivas</strong> trancada em seus aposentos sem receber ninguém — o que ela nunca fez nos 200 anos desde o Abraço.</p>
+    </div>
+    <div class="rumor">
+      <div class="rumor-dot"></div>
+      <p>Um Nouveau-Né foi encontrado às margens do Sena em estado de <strong>Grande Fadiga</strong> — com apenas quatro anos de existência vampírica. Isso deveria ser impossível.</p>
+    </div>
+    <div class="rumor">
+      <div class="rumor-dot"></div>
+      <p>La Société Solaire publicou algo em seus arquivos internos que os caçadores chamam de <strong>"Le Catalogue"</strong> — uma lista. Ninguém sabe o que está nela. Mas os Eternos mais velhos ficaram inquietos quando souberam da existência.</p>
+    </div>
+    <div class="rumor">
+      <div class="rumor-dot"></div>
+      <p>Rémi Pavot foi visto conversando por mais de uma hora com um humano em um café no Montmartre. Sem glamour, sem compulsão — apenas uma <strong>conversa</strong>. Quem estava do outro lado da mesa usava uma aliança com o símbolo do sol.</p>
+    </div>
+    <div class="rumor">
+      <div class="rumor-dot"></div>
+      <p>Alguém quebrou o lacre do Arquivo de 1698 — o conjunto original de documentos do Pacto. <strong>Nada foi removido</strong>. Mas algo foi adicionado: uma folha em branco, exceto por uma única frase em latim medieval que os arquivistas ainda estão tentando decifrar.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">La <em>Cour</em></div>
+  <div class="foot-meta">Paris · 2025</div>
+</footer>
+
+</body>
+</html>

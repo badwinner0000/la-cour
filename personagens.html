@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personagens — La Cour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root { --blk: #070202; --drk: #110404; --drk2: #1b0606; --red: #8b1a1a; --red2: #6b1010; --gld: #c9a97a; --crm: #f4ede0; --crm2: #ece4d4; --txt: #1c0a0a; --mut: #5c3030; }
+    body { background: var(--blk); color: var(--crm); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 18px; line-height: 1.75; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--blk); } ::-webkit-scrollbar-thumb { background: var(--red2); }
+    a { color: inherit; text-decoration: none; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; height: 64px; background: linear-gradient(to bottom, rgba(7,2,2,.96) 60%, transparent); }
+    .nav-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--crm); }
+    .nav-logo em { font-style: normal; color: var(--red); }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(244,237,224,.42); transition: color .3s; }
+    nav ul a:hover, nav ul a.on { color: var(--crm); }
+
+    #ph { padding: 160px 56px 60px; text-align: center; position: relative; overflow: hidden; }
+    #ph::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center bottom, rgba(139,26,26,.09) 0%, transparent 70%); }
+    .lbl { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: var(--red); display: block; }
+    .h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(42px, 7vw, 80px); font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: var(--crm); margin-top: 10px; }
+
+    .filter-bar { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; padding: 0 56px 56px; }
+    .fb { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; padding: 8px 18px; border: 1px solid rgba(139,26,26,.25); color: rgba(244,237,224,.38); background: transparent; cursor: pointer; transition: all .25s; }
+    .fb:hover, .fb.on { border-color: var(--red); color: var(--crm); background: rgba(139,26,26,.1); }
+
+    .sec-label { padding: 0 56px 20px; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: var(--red); max-width: 1200px; margin: 0 auto; border-bottom: 1px solid rgba(139,26,26,.12); }
+
+    .char-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; max-width: 1200px; margin: 30px auto 80px; padding: 0 1px; }
+    .char { background: var(--drk2); transition: background .3s; overflow: hidden; }
+    .char:hover { background: var(--drk); }
+    .char-img { height: 280px; overflow: hidden; position: relative; }
+    .char-ph { width: 100%; height: 280px; background: var(--drk); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: rgba(139,26,26,.25); gap: 8px; }
+    .char-ph-n { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; color: rgba(139,26,26,.1); }
+    .char-info { padding: 20px 24px 26px; border-top: 2px solid transparent; transition: border-color .3s; }
+    .char:hover .char-info { border-color: var(--red); }
+    .char-clan { font-family: 'Montserrat', sans-serif; font-size: 7px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 5px; }
+    .char-name { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--crm); display: block; margin-bottom: 4px; }
+    .char-role { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(244,237,224,.3); display: block; margin-bottom: 12px; }
+    .char-desc { font-family: 'Montserrat', sans-serif; font-size: 10px; color: rgba(244,237,224,.42); line-height: 1.6; }
+    .char-link { display: inline-block; margin-top: 14px; font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); border-bottom: 1px solid rgba(139,26,26,.28); padding-bottom: 2px; }
+    .char-link:hover { border-color: var(--red); }
+    .char-empty { opacity: .35; border: 1px dashed rgba(139,26,26,.25); }
+
+    .npc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; max-width: 1200px; margin: 30px auto 80px; padding: 0 1px; }
+    .npc { background: var(--drk2); padding: 24px 22px; border-top: 1px solid rgba(139,26,26,.12); transition: border-color .3s, background .3s; }
+    .npc:hover { border-color: var(--red); background: var(--drk); }
+    .npc-name { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--crm); display: block; margin-bottom: 4px; }
+    .npc-role { font-family: 'Montserrat', sans-serif; font-size: 7px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 10px; }
+    .npc-desc { font-family: 'Montserrat', sans-serif; font-size: 10px; color: rgba(244,237,224,.38); line-height: 1.55; }
+
+    footer { padding: 36px 56px; border-top: 1px solid rgba(139,26,26,.18); display: flex; align-items: center; justify-content: space-between; }
+    .foot-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--crm); }
+    .foot-logo em { font-style: normal; color: var(--red); }
+    .foot-meta { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(244,237,224,.22); }
+
+    @media (max-width: 860px) {
+      nav { padding: 0 24px; } nav ul { display: none; }
+      .char-grid { grid-template-columns: repeat(2,1fr); }
+      .npc-grid { grid-template-columns: repeat(2,1fr); }
+      #ph, .filter-bar, .sec-label { padding-left: 24px; padding-right: 24px; }
+      footer { padding: 30px 24px; }
+    }
+    @media (max-width: 540px) { .char-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">La <em>Cour</em></div>
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="historia.html">A Corte</a></li>
+    <li><a href="personagens.html" class="on">Personagens</a></li>
+    <li><a href="momento-atual.html">O Momento</a></li>
+    <li><a href="sistema.html">O Sistema</a></li>
+    <li><a href="#" target="_blank">Jogos</a></li>
+  </ul>
+</nav>
+
+<section id="ph">
+  <span class="lbl">Les Personnages</span>
+  <h1 class="h1">Os Personagens</h1>
+</section>
+
+<div class="filter-bar">
+  <button class="fb on">Todos</button>
+  <button class="fb">Clã Néant</button>
+  <button class="fb">Clã Pavot</button>
+  <button class="fb">Clã Braise</button>
+  <button class="fb">Clã Voile</button>
+  <button class="fb">Clã Griffe</button>
+</div>
+
+<div class="sec-label">L'Éternité — O Conselho Supremo</div>
+<div class="char-grid">
+
+  <div class="char">
+    <div class="char-img"><div class="char-ph"><span class="char-ph-n">04</span><span>Isabeau du Néant</span><span style="opacity:.4">400 × 280 px</span></div></div>
+    <div class="char-info">
+      <span class="char-clan">Clã Néant · 547 anos</span>
+      <span class="char-name">Isabeau du Néant</span>
+      <span class="char-role">L'Éternité · Anciã</span>
+      <p class="char-desc">Friamente pragmática. Arquiteta das Três Leis. Sabe mais do que revela — e o que sabe, ninguém imagina.</p>
+      <a href="perfil.html" class="char-link">Ver perfil →</a>
+    </div>
+  </div>
+
+  <div class="char">
+    <div class="char-img"><div class="char-ph"><span class="char-ph-n">05</span><span>Rémi Pavot</span><span style="opacity:.4">400 × 280 px</span></div></div>
+    <div class="char-info">
+      <span class="char-clan">Clã Pavot · 218 anos</span>
+      <span class="char-name">Rémi Pavot</span>
+      <span class="char-role">L'Éternité · Ancião</span>
+      <p class="char-desc">O mais político dos três. Genuinamente gosta de mortais. Suspeita que Isabeau e Viktor escondem algo de magnitude.</p>
+      <a href="perfil.html" class="char-link">Ver perfil →</a>
+    </div>
+  </div>
+
+  <div class="char">
+    <div class="char-img"><div class="char-ph"><span class="char-ph-n">06</span><span>Viktor Braise</span><span style="opacity:.4">400 × 280 px</span></div></div>
+    <div class="char-info">
+      <span class="char-clan">Clã Braise · 82 anos</span>
+      <span class="char-name">Viktor Braise</span>
+      <span class="char-role">L'Éternité · Ancião</span>
+      <p class="char-desc">Direto, sem paciência para política. Chegou durante a ocupação alemã. O mais jovem a ocupar o Conselho na história da Corte.</p>
+      <a href="perfil.html" class="char-link">Ver perfil →</a>
+    </div>
+  </div>
+
+  <div class="char">
+    <div class="char-img"><div class="char-ph"><span class="char-ph-n">07</span><span>Marguerite Voile</span><span style="opacity:.4">400 × 280 px</span></div></div>
+    <div class="char-info">
+      <span class="char-clan">Clã Voile · 178 anos</span>
+      <span class="char-name">Marguerite Voile</span>
+      <span class="char-role">L'Éternité · Anciã</span>
+      <p class="char-desc">Nunca no centro, mas sempre informada. As pessoas falam livremente perto de quem parece não importar.</p>
+      <a href="perfil.html" class="char-link">Ver perfil →</a>
+    </div>
+  </div>
+
+  <div class="char">
+    <div class="char-img"><div class="char-ph"><span class="char-ph-n">08</span><span>Théodore Griffe</span><span style="opacity:.4">400 × 280 px</span></div></div>
+    <div class="char-info">
+      <span class="char-clan">Clã Griffe · 90 anos</span>
+      <span class="char-name">Théodore Griffe</span>
+      <span class="char-role">L'Éternité · Ancião</span>
+      <p class="char-desc">Cirurgião clandestino da Corte. Ressentido de Viktor. Sabe de uma fragilidade em Isabeau que ninguém mais conhece.</p>
+      <a href="perfil.html" class="char-link">Ver perfil →</a>
+    </div>
+  </div>
+
+  <div class="char char-empty">
+    <div class="char-img"><div class="char-ph" style="height:280px;"><span style="font-size:32px;color:rgba(139,26,26,.2);">+</span><span>Novo Personagem</span><span style="opacity:.4">A ser criado</span></div></div>
+    <div class="char-info">
+      <span class="char-clan">Clã · Anos</span>
+      <span class="char-name">Primeiro Sobrenome</span>
+      <span class="char-role">Posição · Status</span>
+      <p class="char-desc">Este slot está disponível para um novo personagem jogador.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="sec-label" style="margin-top:20px;">Personagens de Suporte</div>
+<div class="npc-grid">
+  <div class="npc"><span class="npc-name">Séraphin</span><span class="npc-role">Identidade desconhecida</span><p class="npc-desc">Abraçou os jogadores por razões que não revelou. Sabe mais do que diz. Muito mais.</p></div>
+  <div class="npc"><span class="npc-name">Armand Voss</span><span class="npc-role">Líder · Les Dévoreurs</span><p class="npc-desc">47 anos de existência vampírica. Expulso da Corte em 1998. Odeia Viktor pessoalmente.</p></div>
+  <div class="npc"><span class="npc-name">Madame Leclair</span><span class="npc-role">Líder · Société Solaire</span><p class="npc-desc">Identidade verdadeira desconhecida. Responsável pela eliminação de 8 Eternos na última década.</p></div>
+  <div class="npc"><span class="npc-name">Le Premier</span><span class="npc-role">Consciência Fragmentada</span><p class="npc-desc">Não é um vampiro. É algo anterior. O prazo do Pacto expirou em 1998. Ainda aguarda.</p></div>
+</div>
+
+<footer>
+  <div class="foot-logo">La <em>Cour</em></div>
+  <div class="foot-meta">Paris · 2025 · RPG</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.fb').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.fb').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+    });
+  });
+</script>
+
+</body>
+</html>

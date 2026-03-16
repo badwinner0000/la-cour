@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Sistema — La Cour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    :root { --blk:#070202; --drk:#110404; --drk2:#1b0606; --red:#8b1a1a; --red2:#6b1010; --gld:#c9a97a; --crm:#f4ede0; --crm2:#ece4d4; --txt:#1c0a0a; --mut:#5c3030; }
+    body { background:var(--blk); color:var(--crm); font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; line-height:1.75; overflow-x:hidden; }
+    ::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-track{background:var(--blk)} ::-webkit-scrollbar-thumb{background:var(--red2)}
+    a { color:inherit; text-decoration:none; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 56px; height:64px; background:linear-gradient(to bottom, rgba(7,2,2,.97) 60%, transparent); }
+    .nav-logo { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--crm); }
+    .nav-logo em { font-style:normal; color:var(--red); }
+    nav ul { list-style:none; display:flex; gap:28px; }
+    nav ul a { font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(244,237,224,.4); transition:color .3s; }
+    nav ul a:hover, nav ul a.on { color:var(--crm); }
+
+    .lbl { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:4px; text-transform:uppercase; color:var(--red); display:block; }
+    .divider { display:flex; align-items:center; gap:12px; margin:20px 0; }
+    .dl { height:1px; flex:1; background:linear-gradient(to right,var(--red2),transparent); }
+    .dl.r { background:linear-gradient(to left,var(--red2),transparent); }
+    .dd { width:4px; height:4px; background:var(--red); transform:rotate(45deg); flex-shrink:0; }
+
+    /* PAGE HEADER */
+    #ph { padding:150px 56px 70px; text-align:center; position:relative; overflow:hidden; }
+    #ph::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center bottom, rgba(139,26,26,.1) 0%, transparent 65%); }
+    #ph h1 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(44px,7vw,88px); font-weight:900; text-transform:uppercase; letter-spacing:3px; color:var(--crm); }
+    #ph .sub { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px; font-style:italic; color:rgba(244,237,224,.38); margin-top:16px; }
+
+    /* INTRO TEXT */
+    .intro-band { max-width:760px; margin:0 auto; padding:60px 56px; text-align:center; }
+    .intro-band p { font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; color:rgba(244,237,224,.6); line-height:1.9; }
+    .intro-band p strong { color:var(--gld); font-weight:400; font-style:italic; }
+
+    /* ATRIBUTOS SECTION */
+    .attr-section { padding:0 56px 80px; max-width:1140px; margin:0 auto; }
+    .section-head { margin-bottom:36px; }
+    .section-head h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(22px,2.5vw,32px); font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--crm); padding-bottom:12px; border-bottom:1px solid rgba(139,26,26,.18); }
+    .section-head p { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px; color:rgba(244,237,224,.55); line-height:1.8; margin-top:14px; }
+
+    .attr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; }
+    .attr { background:var(--drk2); padding:28px 24px; border-top:2px solid transparent; transition:border-color .3s, background .3s; }
+    .attr:hover { border-color:var(--red); background:var(--drk); }
+    .attr-abbr { font-family:'Playfair Display',Georgia,serif; font-size:28px; font-weight:900; color:rgba(139,26,26,.25); display:block; margin-bottom:6px; line-height:1; }
+    .attr-name { font-family:'Playfair Display',Georgia,serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--crm); display:block; margin-bottom:10px; }
+    .attr-desc { font-family:'Montserrat',sans-serif; font-size:10px; color:rgba(244,237,224,.42); line-height:1.65; }
+    .attr-ex { margin-top:10px; padding-top:10px; border-top:1px solid rgba(139,26,26,.12); font-family:'Cormorant Garamond',Georgia,serif; font-size:13px; font-style:italic; color:rgba(244,237,224,.3); }
+
+    /* DICE SECTION */
+    .dice-section { background:var(--crm); padding:72px 56px; }
+    .dice-wrap { max-width:1060px; margin:0 auto; }
+    .dice-section h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(22px,2.5vw,32px); font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--txt); margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid rgba(139,26,26,.2); }
+    .dice-section .intro-p { font-family:'Cormorant Garamond',Georgia,serif; font-size:17px; color:var(--mut); line-height:1.85; margin-bottom:32px; }
+    .dice-section .intro-p strong { color:var(--red); font-weight:500; }
+    .dice-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; }
+    .dice-item { background:var(--crm2); padding:26px 22px; border-bottom:2px solid transparent; transition:border-color .3s; }
+    .dice-item:hover { border-color:var(--red); }
+    .dice-item h3 { font-family:'Playfair Display',Georgia,serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--txt); margin-bottom:8px; }
+    .dice-item p { font-family:'Montserrat',sans-serif; font-size:10px; color:var(--mut); line-height:1.65; }
+
+    /* ABRACE SECTION */
+    .abrace-section { padding:72px 56px; max-width:1140px; margin:0 auto; }
+    .abrace-section h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(22px,2.5vw,32px); font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--crm); margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid rgba(139,26,26,.18); }
+    .abrace-section .intro-p { font-family:'Cormorant Garamond',Georgia,serif; font-size:17px; color:rgba(244,237,224,.6); line-height:1.85; margin-bottom:32px; }
+    .abrace-section .intro-p strong { color:var(--gld); font-weight:400; font-style:italic; }
+    .abrace-steps { display:flex; flex-direction:column; gap:1px; }
+    .step { display:flex; gap:0; background:var(--drk2); }
+    .step-num { font-family:'Playfair Display',Georgia,serif; font-size:32px; font-weight:900; color:rgba(139,26,26,.2); width:80px; flex-shrink:0; display:flex; align-items:center; justify-content:center; border-right:1px solid rgba(139,26,26,.1); }
+    .step-content { padding:22px 28px; }
+    .step-title { font-family:'Playfair Display',Georgia,serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--crm); display:block; margin-bottom:6px; }
+    .step-desc { font-family:'Montserrat',sans-serif; font-size:10px; color:rgba(244,237,224,.42); line-height:1.65; }
+
+    /* CONSEQUENCIAS */
+    .conseq-section { background:var(--drk2); padding:72px 56px; }
+    .conseq-wrap { max-width:1060px; margin:0 auto; }
+    .conseq-section h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(22px,2.5vw,32px); font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--crm); margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid rgba(139,26,26,.18); }
+    .conseq-section .intro-p { font-family:'Cormorant Garamond',Georgia,serif; font-size:17px; color:rgba(244,237,224,.55); line-height:1.85; margin-bottom:32px; }
+    .conseq-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; }
+    .conseq { background:var(--drk); padding:26px 24px; border-left:2px solid rgba(139,26,26,.18); transition:border-color .3s; }
+    .conseq:hover { border-color:var(--red); }
+    .conseq-name { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; color:var(--crm); display:block; margin-bottom:8px; }
+    .conseq-desc { font-family:'Montserrat',sans-serif; font-size:10px; color:rgba(244,237,224,.4); line-height:1.65; }
+
+    footer { padding:36px 56px; border-top:1px solid rgba(139,26,26,.15); display:flex; align-items:center; justify-content:space-between; }
+    .foot-logo { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--crm); }
+    .foot-logo em { font-style:normal; color:var(--red); }
+    .foot-meta { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:rgba(244,237,224,.2); }
+
+    @media(max-width:860px){
+      nav{padding:0 24px} nav ul{display:none}
+      #ph, .intro-band, .attr-section, .dice-section, .abrace-section, .conseq-section, footer{padding-left:24px; padding-right:24px}
+      .attr-grid, .dice-grid, .conseq-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">La <em>Cour</em></div>
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="historia.html">A Corte</a></li>
+    <li><a href="momento-atual.html">O Momento</a></li>
+    <li><a href="personagens.html">Personagens</a></li>
+    <li><a href="sistema.html" class="on">O Sistema</a></li>
+    <li><a href="#" target="_blank">Jogos</a></li>
+  </ul>
+</nav>
+
+<section id="ph">
+  <span class="lbl" style="text-align:center;margin-bottom:14px;">As Regras</span>
+  <h1>O Sistema</h1>
+  <p class="sub">Como La Cour funciona mecanicamente</p>
+  <div class="divider" style="max-width:300px;margin:24px auto 0;">
+    <div class="dl"></div><div class="dd"></div><div class="dl r"></div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<div class="intro-band">
+  <p>La Cour usa um sistema próprio e simples, projetado para colocar o foco na narrativa e nas relações entre personagens. Não há regras excessivas — há <strong>princípios que guiam o que um vampiro pode fazer, quanto custa, e o que acontece quando tudo dá errado</strong>.</p>
+</div>
+
+<!-- ATRIBUTOS -->
+<section class="attr-section">
+  <div class="section-head">
+    <span class="lbl" style="margin-bottom:10px;">Os Seis Atributos</span>
+    <h2>O que define um Eterno</h2>
+    <p>Cada personagem tem seis atributos numéricos, de 1 a 5. Esses números determinam quantos dados são rolados em situações de conflito ou tensão. Não há classes, não há níveis — há apenas o que você é, e o que o tempo fez de você.</p>
+  </div>
+  <div class="attr-grid">
+    <div class="attr">
+      <span class="attr-abbr">SOC</span>
+      <span class="attr-name">Social</span>
+      <p class="attr-desc">Capacidade de influenciar, persuadir, intimidar ou encantar. Cobre negociação, manipulação política, sedução e liderança de grupos.</p>
+      <p class="attr-ex">Convencer o Conselho a adiar uma votação.</p>
+    </div>
+    <div class="attr">
+      <span class="attr-abbr">EGO</span>
+      <span class="attr-name">Identidade</span>
+      <p class="attr-desc">A força do senso de self — resistência à manipulação mental, à Grande Fadiga, e à compulsão vampírica. Quanto mais alto, mais intacto o indivíduo permanece após séculos.</p>
+      <p class="attr-ex">Resistir a uma leitura de Isabeau du Néant.</p>
+    </div>
+    <div class="attr">
+      <span class="attr-abbr">SIG</span>
+      <span class="attr-name">Sigilo</span>
+      <p class="attr-desc">Movimentar-se sem ser percebido, reunir informações sem levantar suspeitas, ocultar intenções e criar cobertura. Tanto furtividade física quanto social.</p>
+      <p class="attr-ex">Seguir um membro da Société Solaire pelas catacumbas.</p>
+    </div>
+    <div class="attr">
+      <span class="attr-abbr">FIS</span>
+      <span class="attr-name">Físico</span>
+      <p class="attr-desc">Força bruta, resistência, velocidade de reação. Não é o atributo mais útil nos salões — mas em confronto direto, é o que decide quem continua em pé.</p>
+      <p class="attr-ex">Conter fisicamente um Dévoreur em frenesi.</p>
+    </div>
+    <div class="attr">
+      <span class="attr-abbr">VEL</span>
+      <span class="attr-name">Raciocínio</span>
+      <p class="attr-desc">Velocidade e clareza de pensamento, análise de situações complexas, dedução e memória de longo prazo. Vampiros com VEL alto raramente são surpreendidos.</p>
+      <p class="attr-ex">Perceber que a reunião é uma armadilha antes que ela se feche.</p>
+    </div>
+    <div class="attr">
+      <span class="attr-abbr">HP</span>
+      <span class="attr-name">Vitalidade</span>
+      <p class="attr-desc">Não é "pontos de vida" no sentido tradicional — é a medida de quanto dano, fome, e desgaste sobrenatural um vampiro consegue absorver antes de entrar em colapso ou frenesi.</p>
+      <p class="attr-ex">Sobreviver a uma emboscada da Société Solaire.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DADOS -->
+<section class="dice-section">
+  <div class="dice-wrap">
+    <span class="lbl" style="color:var(--red);margin-bottom:12px;">Como funciona</span>
+    <h2>Rolagens & Conflitos</h2>
+    <p class="intro-p">Quando o resultado de uma ação é incerto e as consequências importam, rola-se um número de dados igual ao atributo relevante. <strong>Cada dado que mostrar 4, 5 ou 6 é um sucesso.</strong> O número de sucessos determina a qualidade do resultado — não apenas se funcionou, mas como funcionou.</p>
+    <div class="dice-grid">
+      <div class="dice-item">
+        <h3>Nenhum Sucesso</h3>
+        <p>A ação falha, e algo piora. O narrador introduz uma complicação — não necessariamente catastrófica, mas real. As falhas em La Cour costumam ser mais interessantes do que os sucessos.</p>
+      </div>
+      <div class="dice-item">
+        <h3>1–2 Sucessos</h3>
+        <p>A ação funciona, mas com custo ou limitação. Conseguiu o que queria, porém alguém viu, ou demorou demais, ou a solução criou um novo problema menor.</p>
+      </div>
+      <div class="dice-item">
+        <h3>3+ Sucessos</h3>
+        <p>Sucesso limpo. A ação funciona como planejado, com possível vantagem adicional. Com 5 sucessos ou mais, o narrador pode oferecer uma informação extra ou consequência positiva inesperada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O ABRAÇO -->
+<section class="abrace-section">
+  <div class="section-head">
+    <span class="lbl" style="margin-bottom:10px;">Criação de Personagem</span>
+    <h2>Construindo um Eterno</h2>
+    <p class="intro-p" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;color:rgba(244,237,224,.6);line-height:1.85;margin-bottom:32px;">Cada personagem nasce de uma história — quem era antes, quando e como ocorreu o Abraço, e o que trezentos anos (mais ou menos) fizeram com essa pessoa. Os atributos refletem tanto a vida mortal quanto a existência vampírica acumulada.</p>
+  </div>
+  <div class="abrace-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <span class="step-title">A Vida Antes</span>
+        <p class="step-desc">Defina quem o personagem era antes do Abraço — época, origem, profissão, relações. Esses elementos informam atributos e fraquezas. Um soldado napoleônico terá FIS elevado; um advogado da Belle Époque, SOC e VEL.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <span class="step-title">O Clã & O Criador</span>
+        <p class="step-desc">O clã determina o poder principal disponível e a fraqueza estrutural. O criador — quem fez o Abraço e por quê — é uma relação que moldará todo o arco do personagem. Criadores desconhecidos são possíveis, mas custam algo.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <span class="step-title">Distribuição de Atributos</span>
+        <p class="step-desc">15 pontos distribuídos entre os seis atributos. Máximo de 4 em qualquer atributo na criação. Mínimo de 1 em todos. HP começa em 30 + (FIS × 5). Pode ser aumentado com Pontos de Experiência ao longo das sessões.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <span class="step-title">O Poder de Clã & A Habilidade Ativa</span>
+        <p class="step-desc">Cada clã tem um poder passivo (sempre ativo) e o personagem escolhe uma habilidade ativa de uma lista do seu clã. Habilidades ativas têm custo em HP ou em dados penalizados na próxima rolagem — poder tem preço.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <span class="step-title">O Traço & O Segredo</span>
+        <p class="step-desc">Um traço de personalidade que define como o personagem age sob pressão — e um segredo que apenas o narrador conhece no início. Segredos não são fraquezas mecânicas: são pontos de narrativa que o narrador usará no momento certo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSEQUÊNCIAS -->
+<section class="conseq-section">
+  <div class="conseq-wrap">
+    <span class="lbl" style="margin-bottom:12px;">O que pode dar errado</span>
+    <h2>Consequências & Estados</h2>
+    <p class="intro-p">Vampiros não morrem facilmente — mas podem ser degradados, comprometidos, ou perdidos. Esses estados não são apenas penalidades mecânicas: são oportunidades narrativas.</p>
+    <div class="conseq-grid">
+      <div class="conseq">
+        <span class="conseq-name">Frenesi</span>
+        <p class="conseq-desc">Quando HP cai abaixo de 10 ou a fome se torna insuportável, o personagem deve rolar EGO. Falha significa perda temporária de controle — o instinto vampírico toma frente, e as consequências são do narrador.</p>
+      </div>
+      <div class="conseq">
+        <span class="conseq-name">Exposição</span>
+        <p class="conseq-desc">Se um humano testemunha algo que não deveria — poderes, alimentação, identidade — é criada uma Ficha de Exposição. Acumular três fichas sem resolução aciona a atenção da Société Solaire automaticamente.</p>
+      </div>
+      <div class="conseq">
+        <span class="conseq-name">Dívida de Sangue</span>
+        <p class="conseq-desc">Receber sangue de outro vampiro em quantidade significativa cria um elo involuntário — o devedor sente uma atração emocional pelo doador. Três dívidas com o mesmo vampiro criam vinculação completa.</p>
+      </div>
+      <div class="conseq">
+        <span class="conseq-name">Sinal da Fadiga</span>
+        <p class="conseq-desc">Quando EGO cai abaixo de 2 por qualquer motivo, o personagem exibe um Sinal — um comportamento compulsivo ou memória fragmentada. É reversível, mas requer tempo e isolamento. Sem tratamento, progride.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">La <em>Cour</em></div>
+  <div class="foot-meta">Paris · 2025</div>
+</footer>
+
+</body>
+</html>

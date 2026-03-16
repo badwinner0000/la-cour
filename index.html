@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Cour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root { --blk:#070202; --drk:#110404; --drk2:#1b0606; --red:#8b1a1a; --red2:#6b1010; --gld:#c9a97a; --crm:#f4ede0; --crm2:#ece4d4; --txt:#1c0a0a; --mut:#5c3030; }
+    body { background:var(--blk); color:var(--crm); font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; line-height:1.75; overflow-x:hidden; }
+    ::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-track{background:var(--blk)} ::-webkit-scrollbar-thumb{background:var(--red2)}
+    a { color:inherit; text-decoration:none; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 56px; height:64px; background:linear-gradient(to bottom, rgba(7,2,2,.97) 60%, transparent); }
+    .nav-logo { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--crm); }
+    .nav-logo em { font-style:normal; color:var(--red); }
+    nav ul { list-style:none; display:flex; gap:28px; }
+    nav ul a { font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(244,237,224,.4); transition:color .3s; }
+    nav ul a:hover, nav ul a.on { color:var(--crm); }
+
+    /* HERO */
+    #hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; padding:0 24px; }
+    .hero-glow { position:absolute; inset:0; background:radial-gradient(ellipse 70% 55% at 50% 65%, rgba(139,26,26,.2) 0%, transparent 100%); }
+    .hl { position:absolute; left:0; right:0; height:1px; background:linear-gradient(to right, transparent, rgba(139,26,26,.4), transparent); }
+    .hl.t{top:0} .hl.b{bottom:0}
+    .hero-inner { position:relative; z-index:2; }
+    .hero-title { font-family:'Playfair Display',Georgia,serif; font-size:clamp(80px,16vw,180px); font-weight:900; line-height:.88; letter-spacing:8px; text-transform:uppercase; color:var(--crm); opacity:0; animation:up .9s .3s forwards; }
+    .hero-cour { font-family:'Playfair Display',Georgia,serif; font-size:clamp(36px,6vw,72px); font-weight:400; font-style:italic; letter-spacing:14px; color:var(--gld); display:block; margin-top:4px; opacity:0; animation:up .9s .45s forwards; }
+    .hero-rule { width:1px; height:60px; background:linear-gradient(to bottom, var(--red), transparent); margin:36px auto; opacity:0; animation:up .8s .6s forwards; }
+    .hero-desc { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px; font-style:italic; color:rgba(244,237,224,.38); letter-spacing:1px; margin-bottom:40px; opacity:0; animation:up .8s .72s forwards; }
+    .hero-btns { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; opacity:0; animation:up .8s .85s forwards; }
+    .btn { font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; padding:10px 22px; border:1px solid rgba(139,26,26,.4); color:rgba(244,237,224,.6); display:inline-block; transition:border-color .3s, color .3s, background .3s; }
+    .btn:hover { border-color:var(--red); color:var(--crm); background:rgba(139,26,26,.1); }
+    @keyframes up { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+    /* LEIS */
+    #leis { padding:90px 56px; max-width:820px; margin:0 auto; }
+    .lbl { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:4px; text-transform:uppercase; color:var(--red); display:block; }
+    .leis-title { font-family:'Playfair Display',Georgia,serif; font-size:clamp(24px,3vw,38px); font-weight:700; text-transform:uppercase; letter-spacing:3px; color:var(--crm); text-align:center; margin-bottom:52px; }
+    .lei { display:flex; gap:24px; align-items:flex-start; padding:22px 0; border-bottom:1px solid rgba(139,26,26,.12); }
+    .lei:last-child{border-bottom:none}
+    .lei-n { font-family:'Playfair Display',Georgia,serif; font-size:42px; font-weight:900; color:rgba(139,26,26,.18); line-height:1; flex-shrink:0; width:48px; }
+    .lei p { font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; font-style:italic; color:rgba(244,237,224,.65); line-height:1.5; padding-top:8px; }
+    .lei p strong { color:var(--gld); font-style:normal; font-weight:400; }
+
+    /* INTRO */
+    #intro { padding:0 56px 90px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; max-width:1140px; margin:0 auto; }
+    .divider { display:flex; align-items:center; gap:12px; margin:20px 0; }
+    .dl { height:1px; flex:1; background:linear-gradient(to right,var(--red2),transparent); }
+    .dl.r { background:linear-gradient(to left,var(--red2),transparent); }
+    .dd { width:4px; height:4px; background:var(--red); transform:rotate(45deg); flex-shrink:0; }
+    .intro-h { font-family:'Playfair Display',Georgia,serif; font-size:clamp(26px,3.5vw,42px); font-weight:700; text-transform:uppercase; letter-spacing:2px; line-height:1.1; color:var(--crm); margin-bottom:8px; }
+    .intro-text p { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px; color:rgba(244,237,224,.6); line-height:1.9; margin-bottom:16px; text-align:justify; }
+    .intro-text p strong { color:var(--gld); font-weight:400; font-style:italic; }
+    .img-box { width:100%; height:380px; background:var(--drk2); border:1px solid rgba(139,26,26,.18); display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:3px; text-transform:uppercase; color:rgba(139,26,26,.28); gap:10px; position:relative; }
+    .img-box-n { font-family:'Playfair Display',Georgia,serif; font-size:36px; color:rgba(139,26,26,.1); }
+    .img-cap { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(7,2,2,.9),transparent); padding:24px 18px 14px; font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:3px; text-transform:uppercase; color:rgba(244,237,224,.28); }
+
+    /* PILLARS */
+    #pillars { background:var(--crm); padding:80px 56px; }
+    .pillars-head { text-align:center; margin-bottom:48px; }
+    .pillars-head .lbl { color:var(--red); margin-bottom:10px; }
+    .pillars-head h2 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(24px,3vw,38px); font-weight:700; text-transform:uppercase; letter-spacing:3px; color:var(--txt); }
+    .pillars-head p { font-family:'Cormorant Garamond',Georgia,serif; font-size:15px; color:var(--mut); margin-top:8px; }
+    .pillars-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; max-width:1140px; margin:0 auto; }
+    .pillar { background:var(--crm2); padding:30px 20px; border-top:2px solid transparent; transition:border-color .3s, background .3s; }
+    .pillar:hover { border-color:var(--red); background:var(--crm); }
+    .pillar-n { font-family:'Playfair Display',Georgia,serif; font-size:32px; font-weight:900; color:rgba(139,26,26,.11); display:block; margin-bottom:10px; line-height:1; }
+    .pillar h3 { font-family:'Playfair Display',Georgia,serif; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--txt); margin-bottom:10px; }
+    .pillar p { font-family:'Montserrat',sans-serif; font-size:10px; color:var(--mut); line-height:1.65; }
+    .pillar a { display:inline-block; margin-top:16px; font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:3px; text-transform:uppercase; color:var(--red); border-bottom:1px solid rgba(139,26,26,.28); padding-bottom:2px; transition:border-color .3s; }
+
+    /* FOOTER */
+    footer { padding:36px 56px; border-top:1px solid rgba(139,26,26,.15); display:flex; align-items:center; justify-content:space-between; }
+    .foot-logo { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--crm); }
+    .foot-logo em { font-style:normal; color:var(--red); }
+    .foot-meta { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:rgba(244,237,224,.2); }
+
+    @media(max-width:780px){
+      nav{padding:0 24px} nav ul{display:none}
+      #intro{grid-template-columns:1fr; padding:0 24px 80px; gap:40px}
+      .pillars-grid{grid-template-columns:1fr 1fr}
+      #pillars,#leis,footer{padding-left:24px; padding-right:24px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">La <em>Cour</em></div>
+  <ul>
+    <li><a href="index.html" class="on">Início</a></li>
+    <li><a href="historia.html">A Corte</a></li>
+    <li><a href="momento-atual.html">O Momento</a></li>
+    <li><a href="personagens.html">Personagens</a></li>
+    <li><a href="sistema.html">O Sistema</a></li>
+    <li><a href="#" target="_blank">Jogos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hl t"></div>
+  <div class="hl b"></div>
+  <div class="hero-inner">
+    <h1 class="hero-title">La<span class="hero-cour">Cour</span></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">Onde o sangue é lei e a imortalidade tem um preço</p>
+    <div class="hero-btns">
+      <a href="historia.html" class="btn">A Corte</a>
+      <a href="momento-atual.html" class="btn">O Momento</a>
+      <a href="personagens.html" class="btn">Personagens</a>
+      <a href="sistema.html" class="btn">O Sistema</a>
+    </div>
+  </div>
+</section>
+
+<!-- PACTO -->
+<section id="leis">
+  <span class="lbl" style="text-align:center;margin-bottom:12px;">As Três Leis</span>
+  <h2 class="leis-title">O Pacto Fundador</h2>
+  <div class="lei"><span class="lei-n">I</span><p>"Nenhum Eterno revelará nossa natureza ao mundo <strong>mortal</strong>."</p></div>
+  <div class="lei"><span class="lei-n">II</span><p>"Nenhum Eterno criará descendentes sem sanção da <strong>Corte</strong>."</p></div>
+  <div class="lei"><span class="lei-n">III</span><p>"O Sangue de um Pacto é sagrado — trair é a <strong>única morte verdadeira</strong>."</p></div>
+</section>
+
+<!-- INTRO -->
+<section>
+  <div id="intro">
+    <div class="intro-text">
+      <span class="lbl" style="margin-bottom:14px;">Bem-vindo</span>
+      <h2 class="intro-h">Paris.<br/>Noite fechada.<br/>1698.</h2>
+      <div class="divider"><div class="dl"></div><div class="dd"></div><div class="dl r"></div></div>
+      <p>Sob o Palais Garnier, numa câmara que não aparece em nenhuma planta arquitetônica, cinco clãs assinaram um acordo. <strong>Três Leis. Um fundador. Trezentos anos de paz forçada.</strong></p>
+      <p>O prazo expirou em 1998. Ninguém falou sobre isso. <strong>Le Premier ainda aguarda.</strong></p>
+      <a href="historia.html" class="btn" style="margin-top:20px;">Ler a história →</a>
+    </div>
+    <div style="position:relative;">
+      <div class="img-box">
+        <span class="img-box-n">01</span>
+        <span>Imagem de Cena · 480 × 380 px</span>
+      </div>
+      <div class="img-cap">Paris · Est. 1698</div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="pillars-head">
+    <span class="lbl">O universo</span>
+    <h2>Explore La Cour</h2>
+    <p>Cinco clãs. Um conselho. Segredos que duram séculos.</p>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar"><span class="pillar-n">I</span><h3>A Origem</h3><p>Le Premier, L'Embrassement, La Grande Fatigue — o que significa existir para sempre.</p><a href="historia.html">Descobrir →</a></div>
+    <div class="pillar"><span class="pillar-n">II</span><h3>Os Cinco Clãs</h3><p>Néant, Pavot, Braise, Voile, Griffe — cada linhagem com poderes e fraquezas próprias.</p><a href="historia.html#clas">Descobrir →</a></div>
+    <div class="pillar"><span class="pillar-n">III</span><h3>O Conselho</h3><p>Isabeau, Rémi, Viktor, Marguerite, Théodore — cinco vozes que governam Paris em silêncio.</p><a href="personagens.html">Descobrir →</a></div>
+    <div class="pillar"><span class="pillar-n">IV</span><h3>As Ameaças</h3><p>Les Dévoreurs, La Société Solaire, L'Oubli — o que espreita além das Três Leis.</p><a href="historia.html#ameacas">Descobrir →</a></div>
+    <div class="pillar"><span class="pillar-n">V</span><h3>O Sistema</h3><p>Atributos, poderes, Abraços e consequências — as regras que sustentam La Cour.</p><a href="sistema.html">Descobrir →</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">La <em>Cour</em></div>
+  <div class="foot-meta">Paris · 2025</div>
+</footer>
+
+</body>
+</html>
