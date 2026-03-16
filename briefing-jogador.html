@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Cour — Briefing do Jogador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --blk: #070202; --drk: #110404; --drk2: #1b0606;
+      --red: #8b1a1a; --red2: #6b1010;
+      --gld: #c9a97a; --crm: #f4ede0; --crm2: #ece4d4;
+      --txt: #1c0a0a; --mut: #5c3030;
+    }
+    body { background: var(--blk); color: var(--crm); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 17px; line-height: 1.75; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--blk); } ::-webkit-scrollbar-thumb { background: var(--red2); }
+    a { color: var(--red); text-decoration: none; }
+    a:hover { color: var(--gld); }
+
+    /* COVER */
+    #cover {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      position: relative; padding: 40px 24px;
+      background: radial-gradient(ellipse 80% 60% at 50% 70%, rgba(139,26,26,.18) 0%, transparent 100%);
+    }
+    #cover::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(139,26,26,.4), transparent);
+    }
+    .cover-label {
+      font-family: 'Montserrat', sans-serif; font-size: 9px;
+      letter-spacing: 6px; text-transform: uppercase; color: var(--red);
+      margin-bottom: 32px; opacity: 0; animation: up .7s .2s forwards;
+    }
+    .cover-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(72px, 15vw, 160px); font-weight: 900;
+      line-height: .88; letter-spacing: 8px; text-transform: uppercase;
+      color: var(--crm); opacity: 0; animation: up .9s .35s forwards;
+    }
+    .cover-cour {
+      display: block; font-style: italic; font-weight: 400;
+      font-size: clamp(34px, 6vw, 68px); letter-spacing: 14px; color: var(--gld);
+      opacity: 0; animation: up .9s .5s forwards;
+    }
+    .cover-rule {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--red), transparent);
+      margin: 36px auto; opacity: 0; animation: up .7s .65s forwards;
+    }
+    .cover-desc {
+      font-style: italic; font-size: 17px;
+      color: rgba(244,237,224,.42); max-width: 480px;
+      opacity: 0; animation: up .7s .78s forwards;
+    }
+    .cover-scroll {
+      position: absolute; bottom: 32px;
+      font-family: 'Montserrat', sans-serif; font-size: 8px;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(244,237,224,.2);
+      opacity: 0; animation: up .7s 1.2s forwards;
+    }
+    @keyframes up { from { opacity:0; transform: translateY(14px); } to { opacity:1; transform: translateY(0); } }
+
+    /* LAYOUT */
+    .wrap { max-width: 820px; margin: 0 auto; padding: 0 32px; }
+    .section { padding: 72px 0; border-bottom: 1px solid rgba(139,26,26,.1); }
+    .section:last-child { border-bottom: none; }
+
+    /* LABELS & TITLES */
+    .lbl {
+      font-family: 'Montserrat', sans-serif; font-size: 8px;
+      letter-spacing: 5px; text-transform: uppercase; color: var(--red);
+      display: block; margin-bottom: 10px;
+    }
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(26px, 4vw, 40px); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px; color: var(--crm);
+      margin-bottom: 28px; line-height: 1.05;
+    }
+    .divider {
+      display: flex; align-items: center; gap: 12px; margin: 0 0 28px;
+    }
+    .dl { height: 1px; flex: 1; background: linear-gradient(to right, var(--red2), transparent); }
+    .dl.r { background: linear-gradient(to left, var(--red2), transparent); }
+    .dd { width: 4px; height: 4px; background: var(--red); transform: rotate(45deg); flex-shrink: 0; }
+
+    /* BODY TEXT */
+    p { color: rgba(244,237,224,.68); line-height: 1.9; margin-bottom: 16px; text-align: justify; }
+    p:last-child { margin-bottom: 0; }
+    p strong { color: var(--gld); font-weight: 400; font-style: italic; }
+    p em { color: var(--red); font-style: italic; }
+
+    /* CALLOUT */
+    .callout {
+      border-left: 2px solid var(--red2);
+      padding: 14px 20px;
+      background: rgba(139,26,26,.07);
+      font-style: italic; font-size: 16px;
+      color: rgba(244,237,224,.5);
+      margin: 24px 0; line-height: 1.65;
+    }
+    .callout strong { color: var(--gld); font-style: normal; }
+
+    /* CLÃS GRID */
+    .clas { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 8px; }
+    .cla {
+      background: var(--drk2); padding: 20px 20px;
+      border-left: 2px solid rgba(139,26,26,.15);
+      transition: border-color .25s;
+    }
+    .cla:hover { border-color: var(--red); }
+    .cla-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--crm); display: block; margin-bottom: 3px;
+    }
+    .cla-dom {
+      font-family: 'Montserrat', sans-serif; font-size: 7px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--red); display: block; margin-bottom: 8px;
+    }
+    .cla-txt {
+      font-family: 'Montserrat', sans-serif; font-size: 10px;
+      color: rgba(244,237,224,.38); line-height: 1.55;
+    }
+    /* 5th clan spans full width */
+    .cla.full { grid-column: 1 / -1; }
+
+    /* CONSELHO */
+    .conselho { display: flex; flex-direction: column; gap: 1px; margin-top: 8px; }
+    .membro {
+      display: flex; gap: 0; background: var(--drk2);
+      border-left: 2px solid rgba(139,26,26,.15);
+      transition: border-color .25s;
+    }
+    .membro:hover { border-color: var(--red); }
+    .membro-id {
+      width: 160px; flex-shrink: 0; padding: 16px 18px;
+      border-right: 1px solid rgba(139,26,26,.12);
+    }
+    .membro-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px; font-weight: 700; color: var(--crm);
+      display: block; margin-bottom: 2px;
+    }
+    .membro-cla {
+      font-family: 'Montserrat', sans-serif; font-size: 7px;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--red);
+    }
+    .membro-desc {
+      padding: 16px 20px;
+      font-family: 'Montserrat', sans-serif; font-size: 10px;
+      color: rgba(244,237,224,.38); line-height: 1.6;
+    }
+
+    /* AMEAÇAS */
+    .ameacas { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 8px; }
+    .ameaca {
+      background: var(--drk2); padding: 20px 20px;
+      border-top: 1px solid rgba(139,26,26,.15);
+      transition: border-color .25s;
+    }
+    .ameaca:hover { border-color: var(--red); }
+    .ameaca-tag {
+      font-family: 'Montserrat', sans-serif; font-size: 7px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(244,237,224,.22); display: block; margin-bottom: 5px;
+    }
+    .ameaca-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px; font-weight: 700; color: var(--crm);
+      display: block; margin-bottom: 8px;
+    }
+    .ameaca-txt {
+      font-family: 'Montserrat', sans-serif; font-size: 10px;
+      color: rgba(244,237,224,.38); line-height: 1.6;
+    }
+
+    /* RUMORES */
+    .rumores { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+    .rumor {
+      display: flex; gap: 16px; padding: 14px 0;
+      border-bottom: 1px solid rgba(139,26,26,.08);
+    }
+    .rumor:last-child { border-bottom: none; }
+    .rumor-dot { width: 5px; height: 5px; background: var(--red2); transform: rotate(45deg); flex-shrink: 0; margin-top: 9px; }
+    .rumor p { font-style: italic; font-size: 16px; color: rgba(244,237,224,.52); margin: 0; text-align: left; }
+    .rumor p strong { color: rgba(244,237,224,.72); font-style: normal; }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 32px; text-align: center;
+      border-top: 1px solid rgba(139,26,26,.12);
+    }
+    .foot-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px; font-weight: 900; letter-spacing: 6px;
+      text-transform: uppercase; color: var(--crm);
+    }
+    .foot-title em { font-style: italic; color: var(--gld); }
+    .foot-sub {
+      font-family: 'Montserrat', sans-serif; font-size: 8px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(244,237,224,.2); margin-top: 10px; display: block;
+    }
+    .foot-link {
+      display: inline-block; margin-top: 24px;
+      font-family: 'Montserrat', sans-serif; font-size: 9px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--red); border: 1px solid rgba(139,26,26,.35);
+      padding: 10px 24px; transition: all .3s;
+    }
+    .foot-link:hover { background: rgba(139,26,26,.12); color: var(--crm); border-color: var(--red); }
+
+    @media (max-width: 640px) {
+      .clas, .ameacas { grid-template-columns: 1fr; }
+      .cla.full { grid-column: auto; }
+      .membro { flex-direction: column; }
+      .membro-id { width: auto; border-right: none; border-bottom: 1px solid rgba(139,26,26,.1); }
+      .wrap { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CAPA -->
+<section id="cover">
+  <p class="cover-label">Briefing do Jogador</p>
+  <h1 class="cover-title">La<span class="cover-cour">Cour</span></h1>
+  <div class="cover-rule"></div>
+  <p class="cover-desc">Tudo que você precisa saber antes de entrar em Paris.</p>
+  <span class="cover-scroll">↓ &nbsp; rolar para ler</span>
+</section>
+
+<div class="wrap">
+
+  <!-- PREMISSA -->
+  <section class="section">
+    <span class="lbl">O Universo</span>
+    <h2>O que é La Cour</h2>
+    <div class="divider"><div class="dl"></div><div class="dd"></div><div class="dl r"></div></div>
+    <p>Paris, 2025. Sob a cidade que todos conhecem existe outra — mais antiga, mais silenciosa, e infinitamente mais perigosa. Vampiros governam nas sombras há mais de trezentos anos, organizados em cinco clãs e regidos por um único acordo: <strong>o Pacto de 1698</strong>.</p>
+    <p>O Pacto foi firmado por Jean-Baptiste Moreau, o <em>Le Compositeur</em>, numa câmara subterrânea sob o que viria a ser o Palais Garnier. Três leis simples. Trezentos anos de ordem frágil. E então, em 1998, o prazo expirou.</p>
+    <div class="callout">
+      "Nenhum Eterno revelará nossa natureza ao mundo mortal."<br/>
+      "Nenhum Eterno criará descendentes sem sanção da Corte."<br/>
+      "O Sangue de um Pacto é sagrado — trair é a <strong>única morte verdadeira</strong>."
+    </div>
+    <p>Ninguém agiu quando o Pacto expirou. Vinte e sete anos de silêncio. Mas algo, em algum lugar, <em>começou a se mover</em>.</p>
+  </section>
+
+  <!-- OS CLÃS -->
+  <section class="section">
+    <span class="lbl">Os Cinco Clãs</span>
+    <h2>A Linhagem que Define</h2>
+    <div class="divider"><div class="dl"></div><div class="dd"></div><div class="dl r"></div></div>
+    <p>A filiação a um clã não é uma escolha — é herdada pelo Abraço. O sangue do criador determina os poderes e as fraquezas de um vampiro para sempre.</p>
+    <div class="clas">
+      <div class="cla">
+        <span class="cla-name">Néant</span>
+        <span class="cla-dom">Mental · Psíquico</span>
+        <p class="cla-txt">Leitura mental, sugestão, apagamento de memória. O mais antigo e temido de Paris. Fraqueza: isolamento progressivo — a leitura torna-se involuntária com a idade.</p>
+      </div>
+      <div class="cla">
+        <span class="cla-name">Pavot</span>
+        <span class="cla-dom">Social · Manipulação</span>
+        <p class="cla-txt">Compulsão vocal, aura de confiança, charme prolongado. Os diplomatas naturais. Fraqueza: dependência de audiência — o isolamento os deteriora.</p>
+      </div>
+      <div class="cla">
+        <span class="cla-name">Braise</span>
+        <span class="cla-dom">Físico · Combate</span>
+        <p class="cla-txt">Força amplificada, absorção de impacto, regeneração. Os soldados da Corte. Fraqueza: dificuldade de moderação — respostas físicas desproporcionais.</p>
+      </div>
+      <div class="cla">
+        <span class="cla-name">Voile</span>
+        <span class="cla-dom">Sombra · Ilusão</span>
+        <p class="cla-txt">Camuflagem, ilusão localizada, manipulação de luz. Nunca no centro — sempre cientes de tudo. Fraqueza: compulsão pela invisibilidade em momentos de crise.</p>
+      </div>
+      <div class="cla full">
+        <span class="cla-name">Griffe</span>
+        <span class="cla-dom">Sangue · Cura</span>
+        <p class="cla-txt">Sentido de sangue, cura acelerada, elo sanguíneo, coagulação. O mais temido nas negociações — e nas guerras. Fraqueza: fome amplificada, alimenta-se com o dobro da frequência.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- O CONSELHO -->
+  <section class="section">
+    <span class="lbl">L'Éternité</span>
+    <h2>O Conselho</h2>
+    <div class="divider"><div class="dl"></div><div class="dd"></div><div class="dl r"></div></div>
+    <p>Cinco vampiros com mais de 50 anos de existência governam La Cour. Suas palavras têm peso de lei. As tensões entre eles têm peso de guerra.</p>
+    <div class="conselho">
+      <div class="membro">
+        <div class="membro-id">
+          <span class="membro-name">Isabeau du Néant</span>
+          <span class="membro-cla">Néant · 547 anos</span>
+        </div>
+        <p class="membro-desc">Arquiteta das Três Leis. Friamente pragmática. Ficou três noites consecutivas isolada — algo que nunca aconteceu em 200 anos. Sabe mais do que revela.</p>
+      </div>
+      <div class="membro">
+        <div class="membro-id">
+          <span class="membro-name">Rémi Pavot</span>
+          <span class="membro-cla">Pavot · 218 anos</span>
+        </div>
+        <p class="membro-desc">O mais político. Genuinamente gosta de mortais. Suspeita que Isabeau e Viktor escondem algo de magnitude. Aberto a alianças incomuns.</p>
+      </div>
+      <div class="membro">
+        <div class="membro-id">
+          <span class="membro-name">Viktor Braise</span>
+          <span class="membro-cla">Braise · 82 anos</span>
+        </div>
+        <p class="membro-desc">Direto, sem paciência para política. O mais jovem já a ocupar o Conselho. Em impasse aberto com Rémi. Lidera eliminação de vampiros em Grande Fadiga desde 1980.</p>
+      </div>
+      <div class="membro">
+        <div class="membro-id">
+          <span class="membro-name">Marguerite Voile</span>
+          <span class="membro-cla">Voile · 178 anos</span>
+        </div>
+        <p class="membro-desc">Ex-atriz, abraçada em 1847. Nunca parou de performar. A mais bem informada da Corte — as pessoas falam livremente perto de quem parece não importar.</p>
+      </div>
+      <div class="membro">
+        <div class="membro-id">
+          <span class="membro-name">Théodore Griffe</span>
+          <span class="membro-cla">Griffe · 90 anos</span>
+        </div>
+        <p class="membro-desc">Cirurgião clandestino. Ressentido de Viktor por razões nunca declaradas. Sabe de uma fragilidade em Isabeau que ninguém mais conhece.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMEAÇAS -->
+  <section class="section">
+    <span class="lbl">O que espreita</span>
+    <h2>Ameaças & Facções</h2>
+    <div class="divider"><div class="dl"></div><div class="dd"></div><div class="dl r"></div></div>
+    <div class="ameacas">
+      <div class="ameaca">
+        <span class="ameaca-tag">Facção Renegada</span>
+        <span class="ameaca-name">Les Dévoreurs</span>
+        <p class="ameaca-txt">Vampiros que rejeitaram o Pacto. Liderados por Armand Voss, expulso em 1998. Ouvem uma voz que chamam de <em>La Voix Ancienne</em> — e não sabem que essa voz tem nome.</p>
+      </div>
+      <div class="ameaca">
+        <span class="ameaca-tag">Caçadores Mortais</span>
+        <span class="ameaca-name">La Société Solaire</span>
+        <p class="ameaca-txt">Fundada em 1887. Eliminaram 8 Eternos em 10 anos. Liderados pela enigmática Madame Leclair. Sabem coisas que deveriam ser impossíveis de saber — há um informante na Corte.</p>
+      </div>
+      <div class="ameaca">
+        <span class="ameaca-tag">La Grande Fatigue</span>
+        <span class="ameaca-name">L'Oubli</span>
+        <p class="ameaca-txt">Vampiros que perderam a si mesmos. Instinto puro. A Corte ordena eliminação imediata. Um Nouveau-Né entrou nesse estado com apenas 4 anos — isso deveria ser impossível.</p>
+      </div>
+      <div class="ameaca">
+        <span class="ameaca-tag">Consciência Primordial</span>
+        <span class="ameaca-name">Le Premier</span>
+        <p class="ameaca-txt">Anterior ao conceito de vampiro. ~8.000 anos. O Pacto de 1698 era com ele. O Pacto expirou em 1998. Vinte e sete anos de silêncio não foram inatividade — foram preparação.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOUCHÉS & ERRANTS -->
+  <section class="section">
+    <span class="lbl">Outras Condições</span>
+    <h2>Les Touchés & Les Errants</h2>
+    <div class="divider"><div class="dl"></div><div class="dd"></div><div class="dl r"></div></div>
+
+    <p style="margin-bottom:6px;"><strong style="color:var(--crm);font-style:normal;">Les Touchés — Os Tocados</strong></p>
+    <p>Descendentes humanos de relações entre vampiros e humanos ao longo dos séculos. Não foram abraçados. O sangue vampírico é imprevisível — pode saltar gerações e reaparecer com força total. São <em>proibidos</em> pela Corte. São caçados pelos Dévoreurs, recrutados ou eliminados pela Société Solaire, e rastreados por Le Premier por razões que ninguém compreende ainda.</p>
+    <p style="margin-bottom:4px;">Traços: atração involuntária de vampiros · instinto aguçado · sonhos de memórias da linhagem · resistência à compulsão · cicatrização acelerada.</p>
+
+    <div style="border-top:1px solid rgba(139,26,26,.1);margin:24px 0;"></div>
+
+    <p style="margin-bottom:6px;"><strong style="color:var(--crm);font-style:normal;">Les Errants — Os Errantes</strong></p>
+    <p>Vampiros que operam fora da estrutura da Corte — expulsos ou por escolha própria. Mantêm os poderes do clã de origem e a obrigação de cumprir as Três Leis, mas sem acesso ao Arquivo, sem proteção institucional, e com a desconfiança de todos os lados. A Corte os classifica como ameaça monitorada.</p>
+  </section>
+
+  <!-- O MOMENTO ATUAL -->
+  <section class="section">
+    <span class="lbl">Paris, agora</span>
+    <h2>O Que Está Acontecendo</h2>
+    <div class="divider"><div class="dl"></div><div class="dd"></div><div class="dl r"></div></div>
+    <p>A superfície de La Cour permanece intacta. O Conselho se reúne. As decisões são tomadas. Mas quem presta atenção percebe: as reuniões duram mais, os votos não são mais unânimes, e alguns Établis desapareceram sem aviso.</p>
+    <div class="rumores">
+      <div class="rumor"><div class="rumor-dot"></div><p>Isabeau du Néant ficou <strong>três noites isolada</strong> — em 200 anos, isso nunca aconteceu.</p></div>
+      <div class="rumor"><div class="rumor-dot"></div><p>Ataques dos Dévoreurs aumentaram <strong>40%</strong> em seis meses, mais cirúrgicos e melhor informados.</p></div>
+      <div class="rumor"><div class="rumor-dot"></div><p>La Société Solaire eliminou <strong>dois Établis em três meses</strong>. Parecem saber onde os Eternos estarão antes de eles se moverem.</p></div>
+      <div class="rumor"><div class="rumor-dot"></div><p>Um Nouveau-Né entrou em <strong>Grande Fadiga com apenas quatro anos</strong>. Isso é considerado impossível.</p></div>
+      <div class="rumor"><div class="rumor-dot"></div><p>Alguém quebrou o lacre do <strong>Arquivo de 1698</strong> e adicionou um documento. Nada foi removido.</p></div>
+      <div class="rumor"><div class="rumor-dot"></div><p><strong>Séraphin</strong> convocou uma reunião no 8º arrondissement. Não pediu — convocou. E não estava lá quando os convocados chegaram.</p></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="foot-title">La <em>Cour</em></div>
+  <span class="foot-sub">Paris · 2025</span>
+  <br/>
+  <a href="https://badwinner0000.github.io/la-cour/" class="foot-link">Ver o site completo →</a>
+</footer>
+
+</body>
+</html>
