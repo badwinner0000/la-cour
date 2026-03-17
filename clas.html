@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Os Clãs — La Cour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    :root { --blk:#070202; --drk:#110404; --drk2:#1b0606; --red:#8b1a1a; --red2:#6b1010; --gld:#c9a97a; --crm:#f4ede0; --crm2:#ece4d4; --txt:#1c0a0a; --mut:#5c3030; }
+    body { background:var(--blk); color:var(--crm); font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; line-height:1.75; overflow-x:hidden; }
+    ::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-track{background:var(--blk)} ::-webkit-scrollbar-thumb{background:var(--red2)}
+    a { color:inherit; text-decoration:none; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 56px; height:64px; background:linear-gradient(to bottom,rgba(7,2,2,.97) 60%,transparent); }
+    .nav-logo { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--crm); }
+    .nav-logo em { font-style:normal; color:var(--red); }
+    nav ul { list-style:none; display:flex; gap:28px; }
+    nav ul a { font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(244,237,224,.4); transition:color .3s; }
+    nav ul a:hover, nav ul a.on { color:var(--crm); }
+
+    /* HEADER */
+    #ph { padding:150px 56px 70px; text-align:center; position:relative; }
+    #ph::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center bottom,rgba(139,26,26,.1) 0%,transparent 65%); }
+    .lbl { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:4px; text-transform:uppercase; color:var(--red); display:block; }
+    .h1 { font-family:'Playfair Display',Georgia,serif; font-size:clamp(44px,7vw,88px); font-weight:900; text-transform:uppercase; letter-spacing:3px; color:var(--crm); }
+    .divider { display:flex; align-items:center; gap:12px; margin:20px 0; }
+    .dl { height:1px; flex:1; background:linear-gradient(to right,var(--red2),transparent); }
+    .dl.r { background:linear-gradient(to left,var(--red2),transparent); }
+    .dd { width:4px; height:4px; background:var(--red); transform:rotate(45deg); flex-shrink:0; }
+
+    /* NAV DOS CLÃS */
+    .cla-nav { display:flex; justify-content:center; gap:4px; flex-wrap:wrap; padding:0 56px 60px; }
+    .cla-nav a { font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; padding:9px 20px; border:1px solid rgba(139,26,26,.3); color:rgba(244,237,224,.45); transition:all .3s; }
+    .cla-nav a:hover { border-color:var(--red); color:var(--crm); background:rgba(139,26,26,.1); }
+
+    /* CLÃ SECTION */
+    .cla-section { border-top:1px solid rgba(139,26,26,.12); }
+
+    /* HERO DO CLÃ */
+    .cla-hero { display:grid; grid-template-columns:1fr 1fr; min-height:420px; }
+    .cla-img { background:var(--drk2); border-right:1px solid rgba(139,26,26,.12); display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:3px; text-transform:uppercase; color:rgba(139,26,26,.28); gap:10px; min-height:420px; }
+    .cla-img-n { font-family:'Playfair Display',Georgia,serif; font-size:36px; color:rgba(139,26,26,.1); }
+    .cla-intro { padding:56px 52px; background:var(--drk); display:flex; flex-direction:column; justify-content:center; }
+    .cla-name { font-family:'Playfair Display',Georgia,serif; font-size:clamp(32px,5vw,56px); font-weight:900; text-transform:uppercase; letter-spacing:4px; color:var(--crm); line-height:.9; margin-bottom:6px; }
+    .cla-domain { font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:28px; }
+    .cla-intro p { font-family:'Cormorant Garamond',Georgia,serif; font-size:16px; color:rgba(244,237,224,.62); line-height:1.9; margin-bottom:16px; text-align:justify; }
+    .cla-intro p strong { color:var(--gld); font-weight:400; font-style:italic; }
+    .cla-intro p em { color:var(--red); font-style:italic; }
+
+    /* PODERES */
+    .cla-body { padding:60px 56px; max-width:1140px; margin:0 auto; }
+    .cla-body-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+    .sec-title { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:4px; text-transform:uppercase; color:var(--red); padding-bottom:10px; border-bottom:1px solid rgba(139,26,26,.18); margin-bottom:20px; }
+    .poder { margin-bottom:16px; }
+    .poder-nivel { font-family:'Montserrat',sans-serif; font-size:7px; letter-spacing:3px; text-transform:uppercase; color:rgba(244,237,224,.3); display:block; margin-bottom:4px; }
+    .poder-nome { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; color:var(--crm); display:block; margin-bottom:5px; }
+    .poder-desc { font-family:'Montserrat',sans-serif; font-size:10px; color:rgba(244,237,224,.45); line-height:1.65; }
+    .poder-destaque { background:var(--drk2); padding:14px 18px; border-left:2px solid var(--red2); margin-bottom:2px; }
+
+    /* FRAQUEZA */
+    .fraqueza-grid { display:flex; flex-direction:column; gap:1px; }
+    .fraqueza-item { background:var(--drk2); padding:14px 20px; }
+    .fraqueza-estado { font-family:'Playfair Display',Georgia,serif; font-size:13px; font-weight:700; color:var(--crm); display:block; margin-bottom:5px; }
+    .fraqueza-desc { font-family:'Montserrat',sans-serif; font-size:10px; color:rgba(244,237,224,.4); line-height:1.6; }
+    .fraqueza-item.critical { border-left:2px solid var(--red); }
+
+    /* LIDER */
+    .cla-lider { background:var(--crm); padding:60px 56px; }
+    .cla-lider-grid { display:grid; grid-template-columns:280px 1fr; gap:60px; align-items:start; max-width:1060px; margin:0 auto; }
+    .lider-img { background:var(--crm2); border:1px solid rgba(139,26,26,.2); height:360px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:3px; text-transform:uppercase; color:rgba(139,26,26,.3); gap:8px; }
+    .lider-img-n { font-family:'Playfair Display',Georgia,serif; font-size:32px; color:rgba(139,26,26,.12); }
+    .lider-info { }
+    .lider-label { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:4px; text-transform:uppercase; color:var(--red); display:block; margin-bottom:6px; }
+    .lider-nome { font-family:'Playfair Display',Georgia,serif; font-size:clamp(24px,3.5vw,40px); font-weight:900; text-transform:uppercase; letter-spacing:2px; color:var(--txt); margin-bottom:4px; }
+    .lider-alcunha { font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; font-style:italic; color:var(--mut); margin-bottom:20px; display:block; }
+    .lider-stats { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:24px; }
+    .stat-chip { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:1px; text-transform:uppercase; padding:5px 12px; background:var(--crm2); border:1px solid rgba(139,26,26,.2); color:var(--mut); }
+    .lider-text p { font-family:'Cormorant Garamond',Georgia,serif; font-size:17px; color:var(--txt); line-height:1.9; margin-bottom:16px; text-align:justify; }
+    .lider-text p strong { color:var(--red); font-weight:500; }
+    .lider-text p em { color:var(--mut); }
+
+    /* NÚMEROS */
+    .cla-nums { padding:40px 56px; background:var(--drk2); }
+    .nums-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; max-width:860px; margin:0 auto; }
+    .num-item { background:var(--drk); padding:24px 22px; text-align:center; }
+    .num-val { font-family:'Playfair Display',Georgia,serif; font-size:36px; font-weight:900; color:var(--red); display:block; line-height:1; margin-bottom:6px; }
+    .num-lbl { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:3px; text-transform:uppercase; color:rgba(244,237,224,.3); }
+
+    /* CLÃ NAV BOTTOM */
+    .cla-bottom-nav { display:flex; justify-content:space-between; padding:28px 56px; border-top:1px solid rgba(139,26,26,.12); }
+    .cla-bottom-nav a { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:3px; text-transform:uppercase; color:rgba(244,237,224,.35); transition:color .3s; }
+    .cla-bottom-nav a:hover { color:var(--crm); }
+
+    footer { padding:36px 56px; border-top:1px solid rgba(139,26,26,.15); display:flex; align-items:center; justify-content:space-between; }
+    .foot-logo { font-family:'Playfair Display',Georgia,serif; font-size:14px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--crm); }
+    .foot-logo em { font-style:normal; color:var(--red); }
+    .foot-meta { font-family:'Montserrat',sans-serif; font-size:8px; letter-spacing:2px; text-transform:uppercase; color:rgba(244,237,224,.2); }
+
+    @media(max-width:860px){
+      nav{padding:0 24px} nav ul{display:none}
+      .cla-hero{grid-template-columns:1fr}
+      .cla-body-grid{grid-template-columns:1fr; gap:40px}
+      .cla-lider-grid{grid-template-columns:1fr; gap:32px}
+      .nums-grid{grid-template-columns:1fr 1fr}
+      .cla-body,.cla-lider,.cla-nums,.cla-bottom-nav,.cla-nav,#ph{padding-left:24px;padding-right:24px}
+      .cla-intro{padding:40px 24px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">La <em>Cour</em></div>
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="historia.html">A Corte</a></li>
+    <li><a href="clas.html" class="on">Os Clãs</a></li>
+    <li><a href="personagens.html">Personagens</a></li>
+    <li><a href="momento-atual.html">O Momento</a></li>
+    <li><a href="sistema.html">O Sistema</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<section id="ph">
+  <span class="lbl" style="text-align:center;margin-bottom:12px;">Les Cinq Clans</span>
+  <h1 class="h1">Os Cinco Clãs</h1>
+  <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;font-style:italic;color:rgba(244,237,224,.38);margin-top:14px;">A filiação não é uma escolha. É uma herança de sangue.</p>
+  <div class="divider" style="max-width:300px;margin:24px auto 0;"><div class="dl"></div><div class="dd"></div><div class="dl r"></div></div>
+</section>
+
+<!-- NAV DOS CLÃS -->
+<div class="cla-nav">
+  <a href="#neant">Néant</a>
+  <a href="#beaumont">Beaumont</a>
+  <a href="#braise">Braise</a>
+  <a href="#voile">Voile</a>
+  <a href="#tenebre">Ténèbre</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CLÃ NÉANT -->
+<!-- ═══════════════════════════════════════ -->
+<section class="cla-section" id="neant">
+
+  <div class="cla-hero">
+    <div class="cla-img">
+      <span class="cla-img-n">I</span>
+      <span>Imagem do Clã</span>
+      <span style="opacity:.4">600 × 420 px</span>
+    </div>
+    <div class="cla-intro">
+      <h2 class="cla-name">Néant</h2>
+      <span class="cla-domain">Mental · Psíquico</span>
+      <p>O Néant procura os porosos. Antes do Abraço, todos tinham alguma versão disso: o médico que sabia o diagnóstico antes do exame, a madre superiora que extraía confissões sem fazer perguntas, o filósofo que terminava seus pensamentos. Uma permeabilidade ao mundo interno dos outros que em vida era talento. Depois do Abraço vira outra coisa.</p>
+      <p>O Abraço remove o filtro que o segurava.</p>
+    </div>
+  </div>
+
+  <div class="cla-body">
+    <div class="cla-body-grid">
+
+      <div>
+        <div class="sec-title">Poderes</div>
+
+        <div class="poder">
+          <span class="poder-nivel">Fácil</span>
+          <p class="poder-desc">Sentir o estado emocional de quem está por perto. Saber se alguém mente, sem saber o quê. Criar sensação vaga de confiança ou desconforto. Perceber se outro Néant usa poderes nas imediações.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Médio</span>
+          <p class="poder-desc">Ler o pensamento de superfície. Sugerir uma ideia simples que a pessoa vai defender como se fosse dela. Apagar memória recente sem deixar sensação de lacuna. Plantar um humor que orienta o comportamento sem que a pessoa perceba.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Médio — Poder Especial</span>
+          <span class="poder-nome">Ligação</span>
+          <p class="poder-desc">Cria um fio entre duas mentes. O que um sente, o outro percebe. Com consentimento funciona como canal aberto. Sem consentimento, a pessoa recebe fragmentos que não consegue explicar. Dura até o Néant desfazer ou até colapso emocional intenso romper o fio.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Difícil</span>
+          <p class="poder-desc">Acessar memórias profundas e guardadas. Plantar uma crença complexa com raízes suficientes para durar meses. Apagar um período inteiro com precisão cirúrgica. Criar compulsão emocional de longo prazo.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Difícil — Poder Especial</span>
+          <span class="poder-nome">Espelho</span>
+          <p class="poder-desc">Faz a pessoa ver seus próprios pensamentos projetados como se viessem de fora. Ela ouve a própria voz interior como se fosse outra pessoa falando. Usado com cuidado, extrai confissões que a pessoa nem sabia que queria fazer. Usado sem cuidado, pode fragmentar a percepção de realidade permanentemente.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Muito difícil</span>
+          <p class="poder-desc">Entrar em sonhos e agir dentro deles. Quebrar a estrutura de uma mente deliberadamente. Ler uma mente que resiste ativamente.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">A Fraqueza — Dissolução</div>
+        <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;color:rgba(244,237,224,.55);line-height:1.85;margin-bottom:20px;">Cada uso significativo corrói a fronteira entre o que é do Néant e o que é dos outros. Recuperar exige isolamento real, dias sem usar qualquer poder e sem contato com grupos.</p>
+        <div class="fraqueza-grid">
+          <div class="fraqueza-item"><span class="fraqueza-estado">Estável</span><p class="fraqueza-desc">Leituras voluntárias. Controle total sobre quando e quem.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Permeável</span><p class="fraqueza-desc">Capta fragmentos involuntários de pessoas em estado emocional intenso. Incômodo, gerenciável.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Poroso</span><p class="fraqueza-desc">Leitura constante perto de qualquer grupo. Começa a agir com base em impulsos que não reconhece como seus.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Dissolvido</span><p class="fraqueza-desc">Opera como extensão involuntária das vontades alheias. Tecnicamente funcional. Praticamente já foi.</p></div>
+          <div class="fraqueza-item critical"><span class="fraqueza-estado">Vazio</span><p class="fraqueza-desc">O corpo continua. O vampiro, não. A morte que os Néant mais temem porque por fora não parece morte nenhuma.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LÍDER -->
+  <div class="cla-lider">
+    <div class="cla-lider-grid">
+      <div class="lider-img">
+        <span class="lider-img-n">01</span>
+        <span>Isabeau du Néant</span>
+        <span style="opacity:.4">280 × 360 px</span>
+      </div>
+      <div class="lider-info">
+        <span class="lider-label">Líder do Clã · L'Éternité</span>
+        <h3 class="lider-nome">Isabeau du Néant</h3>
+        <span class="lider-alcunha">La Dame</span>
+        <div class="lider-stats">
+          <span class="stat-chip">547 anos</span>
+          <span class="stat-chip">Abraçada ~1478</span>
+          <span class="stat-chip">Aparência: 25 anos</span>
+          <span class="stat-chip">Confessora espiritual</span>
+        </div>
+        <div class="lider-text">
+          <p>Antes de ser vampira era assistente de inquisidor no sul da França. A devoção religiosa ficou descartada cedo, mas a Igreja era o único lugar onde uma mulher inteligente chegava perto de algo que valesse a pena. Ela ouvia confissões que ninguém deveria ouvir e ficou boa nisso de um jeito que incomodava as pessoas mesmo quando elas não conseguiam explicar por quê.</p>
+          <p>Estava em Paris em 1698. Viu o que Le Premier fez no corpo de Moreau. Assinou o Pacto porque sobreviveu tempo suficiente para chegar à mesa. As Três Leis foram ideia dela — simples por design. Leis simples são muito mais difíceis de contestar do que leis sofisticadas.</p>
+          <p>Nos últimos anos começou a ouvir <strong>ecos em mentes que não deveriam ter ecos</strong>. Fragmentos que não pertencem às pessoas que os carregam. Sabe o que isso provavelmente significa. Ainda está calculando quando agir, porque Isabeau du Néant só se move uma vez.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cla-nums">
+    <div class="nums-grid">
+      <div class="num-item"><span class="num-val">21</span><span class="num-lbl">Confirmados em Paris</span></div>
+      <div class="num-item"><span class="num-val">4</span><span class="num-lbl">Errantes conhecidos</span></div>
+      <div class="num-item"><span class="num-val">547</span><span class="num-lbl">Anos da líder</span></div>
+    </div>
+  </div>
+
+  <div class="cla-bottom-nav">
+    <span style="opacity:0">—</span>
+    <a href="#beaumont">Próximo: Clã Beaumont →</a>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CLÃ BEAUMONT -->
+<!-- ═══════════════════════════════════════ -->
+<section class="cla-section" id="beaumont">
+
+  <div class="cla-hero" style="direction:rtl;">
+    <div class="cla-img" style="direction:ltr;">
+      <span class="cla-img-n">II</span>
+      <span>Imagem do Clã</span>
+      <span style="opacity:.4">600 × 420 px</span>
+    </div>
+    <div class="cla-intro" style="direction:ltr;background:var(--blk);">
+      <h2 class="cla-name">Beaumont</h2>
+      <span class="cla-domain">Social · Manipulação</span>
+      <p>O Beaumont abraça quem já sabia como uma sala funciona antes de entrar nela. O nobre que lia o humor do rei pelo ângulo dos ombros. O negociador que fechava acordos em jantares, não em contratos. Em vida era leitura fina de ambiente e de gente. Depois do Abraço vira algo com alcance muito maior e muito menos escrúpulo.</p>
+      <p>O clã produz o tipo de pessoa que, quando sai de uma reunião, todo mundo na sala acha que a decisão foi deles.</p>
+    </div>
+  </div>
+
+  <div class="cla-body">
+    <div class="cla-body-grid">
+
+      <div>
+        <div class="sec-title">Poderes</div>
+
+        <div class="poder">
+          <span class="poder-nivel">Fácil</span>
+          <p class="poder-desc">Criar impressão imediata de confiança. Identificar a hierarquia emocional de um grupo em minutos. Fazer uma pessoa se sentir genuinamente compreendida sem revelar nada de si mesmo.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Médio — Poder Especial</span>
+          <span class="poder-nome">Detecção</span>
+          <p class="poder-desc">Lê mentiras pelo tom de voz, ritmo respiratório e microexpressões. Sabe quando alguém mente antes de terminar a frase. Não sabe o quê — sabe que sim. Em negociações vale mais do que qualquer leitura mental.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Médio</span>
+          <p class="poder-desc">Compulsão vocal — instrução simples que a pessoa obedece sem questionar. Aura prolongada de confiança que dura horas. Criar dependência emocional gradual ao longo de dias sem que a pessoa perceba.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Difícil</span>
+          <p class="poder-desc">Charme que dura dias sem contato adicional. Criar lealdade genuína que a pessoa defenderá racionalmente. Fazer alguém esquecer que acabou de ser manipulado — a instrução fica, a memória do processo some.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Difícil — Poder Especial</span>
+          <span class="poder-nome">Multidão</span>
+          <p class="poder-desc">Discursa para grupos e move o estado emocional coletivo. Raiva, esperança, devoção, medo — escolhe e aplica. Quanto maior o grupo, menos controle fino sobre o resultado. Uma multidão movida por um Beaumont faz o que ele quer, mas nem sempre da forma que ele planejou.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Muito difícil</span>
+          <p class="poder-desc">Dependência emocional profunda e permanente. Fazer alguém agir contra seus próprios interesses convicto de que está fazendo a escolha certa. Operar sobre um grupo inteiro simultaneamente com precisão individual.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">A Fraqueza — Deterioração por Isolamento</div>
+        <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;color:rgba(244,237,224,.55);line-height:1.85;margin-bottom:20px;">O Beaumont precisa de audiência para funcionar. Cada período significativo sem contato social real avança um estágio. Recuperar exige presença humana genuína, não apenas proximidade física.</p>
+        <div class="fraqueza-grid">
+          <div class="fraqueza-item"><span class="fraqueza-estado">Conectado</span><p class="fraqueza-desc">Opera no auge. Poderes funcionam com facilidade e precisão.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Isolado</span><p class="fraqueza-desc">Começa a forçar conexões onde não existem. Lê interesse em quem está apenas sendo educado.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Privado</span><p class="fraqueza-desc">Poderes começam a funcionar involuntariamente. Compulsão vocal escapando em conversas normais.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Faminto</span><p class="fraqueza-desc">Trata qualquer contato como vínculo profundo. Perigoso para humanos próximos.</p></div>
+          <div class="fraqueza-item critical"><span class="fraqueza-estado">Colapsado</span><p class="fraqueza-desc">A mente organiza o mundo inteiro como audiência. Funcionalmente isolado mesmo em multidões.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cla-lider">
+    <div class="cla-lider-grid">
+      <div class="lider-img">
+        <span class="lider-img-n">02</span>
+        <span>Rémi Baumont</span>
+        <span style="opacity:.4">280 × 360 px</span>
+      </div>
+      <div class="lider-info">
+        <span class="lider-label">Líder do Clã · L'Éternité</span>
+        <h3 class="lider-nome">Rémi Baumont</h3>
+        <span class="lider-alcunha">Le Prince</span>
+        <div class="lider-stats">
+          <span class="stat-chip">320 anos</span>
+          <span class="stat-chip">Abraçado ~1705</span>
+          <span class="stat-chip">Aparência: 36 anos</span>
+          <span class="stat-chip">Playboy herdeiro</span>
+        </div>
+        <div class="lider-text">
+          <p>Era homem de corte no final do reinado de Luís XIV. Não da primeira linha da nobreza, mas do tipo mais útil: presente em todos os ambientes, convidado para todos os jantares, esquecido em nenhuma lista. Sabia como Versalhes funcionava de verdade.</p>
+          <p>Estava em Paris em 1698, ainda mortal, quando a carnificina aconteceu. Sete anos depois foi abraçado. Nunca falou sobre o que viu naquelas três noites. Finge saber menos do que sabe — e sabe mais do que aparenta.</p>
+          <p>Por baixo do charme aristocrático é <strong>oportunista sem ornamento</strong>. Usa quem precisa, descarta quando convém, e faz as duas coisas de um jeito que a maioria só vai perceber depois. Séraphin é seu único ponto cego real.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cla-nums">
+    <div class="nums-grid">
+      <div class="num-item"><span class="num-val">18</span><span class="num-lbl">Confirmados em Paris</span></div>
+      <div class="num-item"><span class="num-val">6–7</span><span class="num-lbl">Errantes monitorados</span></div>
+      <div class="num-item"><span class="num-val">320</span><span class="num-lbl">Anos do líder</span></div>
+    </div>
+  </div>
+
+  <div class="cla-bottom-nav">
+    <a href="#neant">← Clã Néant</a>
+    <a href="#braise">Próximo: Clã Braise →</a>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CLÃ BRAISE -->
+<!-- ═══════════════════════════════════════ -->
+<section class="cla-section" id="braise">
+
+  <div class="cla-hero">
+    <div class="cla-img">
+      <span class="cla-img-n">III</span>
+      <span>Imagem do Clã</span>
+      <span style="opacity:.4">600 × 420 px</span>
+    </div>
+    <div class="cla-intro">
+      <h2 class="cla-name">Braise</h2>
+      <span class="cla-domain">Físico · Combate</span>
+      <p>O Braise abraça quem já conhecia o custo físico de existir antes de ser vampiro. Soldados, lutadores, trabalhadores que construíram o mundo com o corpo. Pessoas que sabiam exatamente quanto dor um ser humano aguenta antes de ceder, porque já testaram isso em si mesmas.</p>
+      <p>Depois do Abraço esse limite simplesmente deixa de existir.</p>
+    </div>
+  </div>
+
+  <div class="cla-body">
+    <div class="cla-body-grid">
+
+      <div>
+        <div class="sec-title">Poderes</div>
+
+        <div class="poder">
+          <span class="poder-nivel">Fácil</span>
+          <p class="poder-desc">Força acima do humano em situações de tensão. Absorver impacto que quebraria qualquer mortal. Sentir perigo iminente antes de identificar a fonte.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Médio</span>
+          <p class="poder-desc">Força amplificada de forma deliberada e sustentada. Regeneração acelerada de ferimentos menores. Resistência a fogo, frio intenso e venenos comuns.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Médio — Poder Especial</span>
+          <span class="poder-nome">Absorção</span>
+          <p class="poder-desc">Absorve o impacto de um golpe e redistribui em seguida, liberando a energia num movimento único. Quanto maior o impacto absorvido, maior o que pode ser devolvido. Absorver além da capacidade causa dano interno.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Difícil</span>
+          <p class="poder-desc">Regeneração de ferimentos severos em minutos. Força suficiente para destruir estruturas físicas. Resistência a danos que normalmente incapacitariam um vampiro.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Difícil — Poder Especial</span>
+          <span class="poder-nome">Presença</span>
+          <p class="poder-desc">Libera uma presença física que paralisa brevemente quem ainda não a experimentou. O instinto animal reconhecendo um predador de categoria superior e travando antes que a mente processe. Dura segundos. Às vezes segundos são suficientes.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Muito difícil</span>
+          <p class="poder-desc">Regenerar ferimentos permanentes. Sustentar força máxima por períodos longos. Absorver e redistribuir dano em escala que destrói o ambiente.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">A Fraqueza — Desregulação</div>
+        <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;color:rgba(244,237,224,.55);line-height:1.85;margin-bottom:20px;">O corpo responde antes que a mente decida. Situações de tensão, provocação ou ameaça real disparam respostas físicas antes de qualquer decisão consciente. Recuar exige tempo fora de qualquer ambiente de conflito.</p>
+        <div class="fraqueza-grid">
+          <div class="fraqueza-item"><span class="fraqueza-estado">Calibrado</span><p class="fraqueza-desc">Controle total. O vampiro escolhe quando e quanto.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Tenso</span><p class="fraqueza-desc">Respostas ligeiramente exageradas. Um aperto de mão dói. Uma porta fechada com força parte o batente.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Desregulado</span><p class="fraqueza-desc">Reações desproporcionais a estímulos menores. Humanos próximos correm risco sem intenção.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Incontido</span><p class="fraqueza-desc">Qualquer gatilho emocional produz resposta física máxima. Sabe que está fora de controle mas não consegue parar.</p></div>
+          <div class="fraqueza-item critical"><span class="fraqueza-estado">Frenesi</span><p class="fraqueza-desc">O corpo age por conta própria. O vampiro observa de dentro sem conseguir intervir.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cla-lider">
+    <div class="cla-lider-grid">
+      <div class="lider-img">
+        <span class="lider-img-n">03</span>
+        <span>Viktor Gregorovitch</span>
+        <span style="opacity:.4">280 × 360 px</span>
+      </div>
+      <div class="lider-info">
+        <span class="lider-label">Líder do Clã · L'Éternité</span>
+        <h3 class="lider-nome">Viktor Gregorovitch</h3>
+        <span class="lider-alcunha">La Bête</span>
+        <div class="lider-stats">
+          <span class="stat-chip">139 anos</span>
+          <span class="stat-chip">Abraçado ~1886</span>
+          <span class="stat-chip">Aparência: 40 anos</span>
+          <span class="stat-chip">Austro-húngaro</span>
+          <span class="stat-chip">Dono de bar / Executor</span>
+        </div>
+        <div class="lider-text">
+          <p>Era oficial do exército austro-húngaro. Carreira construída pela competência de alguém que não tinha sobrenome nobre para abrir portas. Assumiu a liderança do Braise em 1962, quando La Société Solaire eliminou o líder anterior. Havia um vazio e ele preencheu antes que alguém questionasse.</p>
+          <p>É o braço executor da Corte. Quando um Errante cruza a linha, quando um Dévoreur aparece perto demais, quando um L'Oubli precisa ser contido, Viktor é acionado. <strong>Todos sabem. Ninguém nomeia oficialmente.</strong></p>
+          <p>Diz o que pensa antes de calcular o que é conveniente dizer. Viu coisas nas eliminações de L'Oubli nos últimos anos que não fazem sentido pelo padrão antigo. Ainda não foi falar com Isabeau porque falar com Isabeau exige uma paciência que está guardando para quando for realmente necessário.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cla-nums">
+    <div class="nums-grid">
+      <div class="num-item"><span class="num-val">28</span><span class="num-lbl">Confirmados em Paris</span></div>
+      <div class="num-item"><span class="num-val">5</span><span class="num-lbl">Errantes monitorados</span></div>
+      <div class="num-item"><span class="num-val">139</span><span class="num-lbl">Anos do líder</span></div>
+    </div>
+  </div>
+
+  <div class="cla-bottom-nav">
+    <a href="#beaumont">← Clã Beaumont</a>
+    <a href="#voile">Próximo: Clã Voile →</a>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CLÃ VOILE -->
+<!-- ═══════════════════════════════════════ -->
+<section class="cla-section" id="voile">
+
+  <div class="cla-hero" style="direction:rtl;">
+    <div class="cla-img" style="direction:ltr;">
+      <span class="cla-img-n">IV</span>
+      <span>Imagem do Clã</span>
+      <span style="opacity:.4">600 × 420 px</span>
+    </div>
+    <div class="cla-intro" style="direction:ltr;background:var(--blk);">
+      <h2 class="cla-name">Voile</h2>
+      <span class="cla-domain">Sombra · Ilusão</span>
+      <p>Cantores, atores, pintores — o Abraço do Voile tende para quem já sabia como moldar a percepção de outros antes de ter poderes sobrenaturais. Arte é, no fundo, fazer alguém ver o que você quer que ele veja. O Voile apenas remove a necessidade do canvas.</p>
+    </div>
+  </div>
+
+  <div class="cla-body">
+    <div class="cla-body-grid">
+
+      <div>
+        <div class="sec-title">Poderes</div>
+
+        <div class="poder">
+          <span class="poder-nivel">Fácil</span>
+          <p class="poder-desc">Suprimir a própria presença numa sala sem sair dela. Manipular a luz ao redor do próprio corpo. Mover-se sem produzir som.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Médio</span>
+          <p class="poder-desc">Camuflagem completa por períodos curtos. Criar uma ilusão localizada simples — um objeto que não existe, uma porta que parece fechada.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Médio — Poder Especial</span>
+          <span class="poder-nome">Projeção</span>
+          <p class="poder-desc">Cria projeções ilusórias de pessoas ou objetos com detalhes suficientes para enganar quem não está olhando com atenção. A projeção não tem cheiro, não produz calor, não resiste ao toque. Quem toca descobre a mentira. Quem só olha, acredita.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Difícil</span>
+          <p class="poder-desc">Ilusão sustentada por horas sem presença física. Manipular a percepção de luz de um ambiente inteiro. Apagar a própria presença da memória recente de quem a viu.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Difícil — Poder Especial</span>
+          <span class="poder-nome">Máscara</span>
+          <p class="poder-desc">Assume a aparência de outra pessoa por período curto. Voz, rosto, postura, detalhes superficiais de vestuário. Quanto mais conhece a pessoa imitada, mais convincente. Manter uma máscara complexa por horas cobra custo físico real. Se o HP cair durante o uso, a máscara quebra.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Muito difícil</span>
+          <p class="poder-desc">Ilusão completa de ambiente. Manter identidade falsa por dias consecutivos. Projetar múltiplas ilusões simultâneas em locais diferentes.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">A Fraqueza — Compulsão pela Invisibilidade</div>
+        <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;color:rgba(244,237,224,.55);line-height:1.85;margin-bottom:20px;">Em situações de perigo o instinto é desaparecer — e depois do Abraço, desaparecer significa deixar para trás qualquer coisa, e qualquer pessoa, que estava por perto. O uso excessivo torna o instinto progressivamente mais forte.</p>
+        <div class="fraqueza-grid">
+          <div class="fraqueza-item"><span class="fraqueza-estado">Estável</span><p class="fraqueza-desc">Usa os poderes quando quer e permanece quando precisa.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Habituado</span><p class="fraqueza-desc">Tende a tornar-se invisível em situações de tensão leve sem intenção deliberada.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Compulsivo</span><p class="fraqueza-desc">A camuflagem ativa sozinha em qualquer situação desconfortável. Some no meio de conversas sem avisar.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Instintivo</span><p class="fraqueza-desc">Qualquer ameaça percebida dispara desaparecimento imediato. Abandona aliados, posições, responsabilidades.</p></div>
+          <div class="fraqueza-item critical"><span class="fraqueza-estado">Dissolvido</span><p class="fraqueza-desc">Permanece invisível indefinidamente porque reaparecer se tornou o que parece perigoso. Existe mas recusou o mundo.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cla-lider">
+    <div class="cla-lider-grid">
+      <div class="lider-img">
+        <span class="lider-img-n">04</span>
+        <span>Marguerite Voile</span>
+        <span style="opacity:.4">280 × 360 px</span>
+      </div>
+      <div class="lider-info">
+        <span class="lider-label">Líder do Clã · L'Éternité</span>
+        <h3 class="lider-nome">Marguerite Voile</h3>
+        <span class="lider-alcunha">La Voix</span>
+        <div class="lider-stats">
+          <span class="stat-chip">230 anos</span>
+          <span class="stat-chip">Abraçada ~1795</span>
+          <span class="stat-chip">Aparência: 30 anos</span>
+          <span class="stat-chip">Cantora de jazz</span>
+        </div>
+        <div class="lider-text">
+          <p>Cantora em Paris durante a Revolução. Sobreviveu a mudanças de regime pela mesma razão que sempre sobreviveu a tudo: lendo o ambiente antes que o ambiente mudasse. Foi abraçada pelo fundador do clã, Étienne Voile, como esposa de conveniência.</p>
+          <p>O fundador e as outras esposas foram morrendo, um por um, misteriosamente. Marguerite foi a última. Assumiu o clã. <strong>Dizem que ela matou.</strong> Ninguém provou. Ninguém tentou muito.</p>
+          <p>No Conselho é o membro que Isabeau observa com mais atenção. Voile bem treinado é genuinamente difícil de ler até para Néant, e Marguerite treinou por dois séculos. Nos últimos meses percebeu algo estranho nos clientes habituais do clube. Está observando. Ainda não disse nada para ninguém.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cla-nums">
+    <div class="nums-grid">
+      <div class="num-item"><span class="num-val">15</span><span class="num-lbl">Confirmados em Paris</span></div>
+      <div class="num-item"><span class="num-val">3</span><span class="num-lbl">Errantes</span></div>
+      <div class="num-item"><span class="num-val">230</span><span class="num-lbl">Anos da líder</span></div>
+    </div>
+  </div>
+
+  <div class="cla-bottom-nav">
+    <a href="#braise">← Clã Braise</a>
+    <a href="#tenebre">Próximo: Clã Ténèbre →</a>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CLÃ TÉNÈBRE -->
+<!-- ═══════════════════════════════════════ -->
+<section class="cla-section" id="tenebre">
+
+  <div class="cla-hero">
+    <div class="cla-img">
+      <span class="cla-img-n">V</span>
+      <span>Imagem do Clã</span>
+      <span style="opacity:.4">600 × 420 px</span>
+    </div>
+    <div class="cla-intro">
+      <h2 class="cla-name">Ténèbre</h2>
+      <span class="cla-domain">Sangue · Cura</span>
+      <p>O Ténèbre chegou ao Pacto de 1698 sem um fundador. Era um grupo — vampiros de origens diversas unidos pelo mesmo domínio sobre o sangue, que sobreviveram à carnificina porque eram úteis demais para destruir. Le Premier, no corpo de Moreau, reconheceu isso antes de qualquer dos clãs. Quem cura também pode matar.</p>
+      <p>Assinaram. Sobreviveram. E construíram o restante sozinhos.</p>
+    </div>
+  </div>
+
+  <div class="cla-body">
+    <div class="cla-body-grid">
+
+      <div>
+        <div class="sec-title">Poderes</div>
+
+        <div class="poder">
+          <span class="poder-nivel">Fácil</span>
+          <p class="poder-desc">Sentir o sangue de quem está por perto — tipo, saúde, estado emocional, vampiro ou humano. Saber se alguém está ferido antes de ver o ferimento. Detectar se um vampiro está se aproximando da Grande Fadiga.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Médio</span>
+          <p class="poder-desc">Curar ferimentos menores pelo toque. Criar elo sanguíneo com quem bebeu seu sangue. Coagulação forçada — parar hemorragia com concentração.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Médio — Poder Especial</span>
+          <span class="poder-nome">Dependência</span>
+          <p class="poder-desc">O sangue do Ténèbre pode ser deliberadamente preparado para criar vínculo. Quem bebe começa a sentir atração que não consegue explicar, que cresce a cada dose. Usado com frequência, cria dependência funcional. A pessoa não sabe que está sendo condicionada.</p>
+        </div>
+
+        <div class="poder-destaque">
+          <span class="poder-nivel">Médio — Poder Especial</span>
+          <span class="poder-nome">Veneno</span>
+          <p class="poder-desc">Pode envenenar o próprio sangue antes de um confronto. Quem morder sofre efeitos de desorientação leve a paralisia temporária. O processo de preparação leva alguns minutos e deixa o vampiro levemente enfraquecido durante o período ativo.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Difícil</span>
+          <p class="poder-desc">Acelerar ou deter completamente a cura de outra pessoa. Sentir as fraquezas físicas específicas de quem toca. Rastrear alguém pelo rastro sanguíneo por até 24 horas.</p>
+        </div>
+
+        <div class="poder">
+          <span class="poder-nivel">Muito difícil</span>
+          <p class="poder-desc">Curar ferimentos permanentes. Criar dependência irreversível em poucos contatos. Envenenar o sangue de forma letal para vampiros mais jovens.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">A Fraqueza — Fome Amplificada</div>
+        <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;color:rgba(244,237,224,.55);line-height:1.85;margin-bottom:20px;">O Ténèbre se alimenta com o dobro da frequência de qualquer outro clã. O domínio sobre o sangue tem custo direto — o próprio corpo consome mais do que produz. Usar poderes agrava o estado.</p>
+        <div class="fraqueza-grid">
+          <div class="fraqueza-item"><span class="fraqueza-estado">Saciado</span><p class="fraqueza-desc">Opera normalmente. Poderes funcionam sem custo adicional perceptível.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Com fome</span><p class="fraqueza-desc">Sente o sangue de todos ao redor com intensidade incômoda. Percepção aguçada, controle mais fino comprometido.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Faminto</span><p class="fraqueza-desc">A fome interfere na concentração. Poderes difíceis ficam instáveis. Decisões orientadas pela fome sem perceber.</p></div>
+          <div class="fraqueza-item"><span class="fraqueza-estado">Desesperado</span><p class="fraqueza-desc">Qualquer pessoa com sangue próximo é tentação real. Perigoso em ambientes com humanos.</p></div>
+          <div class="fraqueza-item critical"><span class="fraqueza-estado">Frenesi de Fome</span><p class="fraqueza-desc">Silencioso e focado — vai direto ao que precisa com precisão perturbadora.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cla-lider">
+    <div class="cla-lider-grid">
+      <div class="lider-img">
+        <span class="lider-img-n">05</span>
+        <span>Theodore Harlow</span>
+        <span style="opacity:.4">280 × 360 px</span>
+      </div>
+      <div class="lider-info">
+        <span class="lider-label">Líder do Clã · L'Éternité</span>
+        <h3 class="lider-nome">Theodore Harlow</h3>
+        <span class="lider-alcunha">Le Docteur</span>
+        <div class="lider-stats">
+          <span class="stat-chip">168 anos</span>
+          <span class="stat-chip">Abraçado ~1857</span>
+          <span class="stat-chip">Aparência: 52 anos</span>
+          <span class="stat-chip">Americano</span>
+          <span class="stat-chip">Pesquisador independente</span>
+        </div>
+        <div class="lider-text">
+          <p>Chegou a Paris nos anos 1850 como cirurgião americano para estudar medicina europeia. Encontrou o Ténèbre por acidente — um paciente que curou rápido demais, uma amostra de sangue que não se comportava como sangue deveria. Começou a investigar com frieza clínica.</p>
+          <p><strong>Pediu o Abraço ele mesmo depois de três anos de pesquisa.</strong> A vampira que o abraçou ficou surpresa. Theodore chegou à reunião com anotações.</p>
+          <p>No Conselho é o mais quieto. Observa, anota mentalmente, faz perguntas quando as perguntas importam. A fragilidade que guarda sobre Isabeau não foi buscada — aconteceu em 1887, ele estava presente por razões não relacionadas, viu o que viu, e decidiu guardar. Em 138 anos ainda não encontrou o momento certo para usar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cla-nums">
+    <div class="nums-grid">
+      <div class="num-item"><span class="num-val">15</span><span class="num-lbl">Confirmados em Paris</span></div>
+      <div class="num-item"><span class="num-val">2–3</span><span class="num-lbl">Sem rastro</span></div>
+      <div class="num-item"><span class="num-val">168</span><span class="num-lbl">Anos do líder</span></div>
+    </div>
+  </div>
+
+  <div class="cla-bottom-nav">
+    <a href="#voile">← Clã Voile</a>
+    <a href="personagens.html">Ver Personagens →</a>
+  </div>
+
+</section>
+
+<footer>
+  <div class="foot-logo">La <em>Cour</em></div>
+  <div class="foot-meta">Paris · 2025</div>
+</footer>
+
+</body>
+</html>
