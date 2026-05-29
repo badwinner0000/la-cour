@@ -3,8 +3,8 @@
 ## IDENTIDADE
 
 - **Nome do RPG:** La Cour
-- **Ambientação:** Paris, 2025. RPG de vampiros focado em narrativa e política
-- **Tom:** Gótico aristocrático, elegante, tenso. Sem linguagem de "jogo" nos textos públicos. Sem mencionar "one shot"
+- **Ambientação:** Paris, 1932. RPG de vampiros focado em narrativa e política
+- **Tom:** Gótico aristocrático, elegante, tenso. Entreguerras. Jazz e decadência. Sem linguagem de "jogo" nos textos públicos
 - **Idioma:** Português brasileiro, com termos em francês para elementos canônicos
 
 ---
@@ -56,9 +56,9 @@
 - Le Premier habitou Moreau e em três noites destruiu todos os clãs que não assinaram o Pacto — a carnificina foi o que forçou a assinatura
 - Os cinco clãs atuais são os que sobreviveram porque assinaram a tempo
 - Moreau traiu Le Premier antes do prazo com ajuda de L'Ancienne e escapou — Le Premier foi expulso do corpo mas não destruído
-- O Pacto expirou em 1938. Levou 87 anos para Le Premier recuperar força suficiente para agir
+- O Pacto expirou em 1918, no fim da Grande Guerra. Levou 14 anos para Le Premier recuperar força suficiente para agir
 - Usa Les Dévoreurs como instrumentos via *La Voix Ancienne* — eles não sabem
-- Está rastreando Touchés de linhagem antiga para usá-los como âncoras
+- Está rastreando recém-abraçados de linhagem antiga para usá-los como âncoras
 
 ### L'Ancienne
 - Ser muito antigo, contemporâneo de Le Premier
@@ -66,7 +66,7 @@
 - Ajudou Moreau a escapar em 1698 por razões próprias que nunca revelou
 - Os arquivos da Corte de 1698 têm páginas rasuradas, trechos arrancados, parágrafos queimados
 - Uma frase resta: *"Elle était là avant nous."*
-- Pode ser lenda. Pode não ser. Ninguém sabe quem rasurouos arquivos.
+- Pode ser lenda. Pode não ser. Ninguém sabe quem rasurou os arquivos.
 
 ### La Cour
 - Fundada em 1698 por **Jean-Baptiste Moreau** (*Le Compositeur*)
@@ -87,12 +87,20 @@
 - Envelhecimento cessa no momento exato do Abraço
 - Sensibilidade solar proporcional à linhagem
 
+### Os Personagens Jogadores
+- Todos os PCs são **recém-abraçados** — transformados recentemente sem autorização da Corte
+- As últimas horas antes da transformação foram **apagadas da memória** de cada um
+- Nenhum sabe quem realizou o Abraço — restam apenas fragmentos: um rosto parcialmente visto, sangue na garganta, vozes desconexas, as luzes de Paris atravessando vidro molhado
+- **Séraphin é o responsável pelos Abraços**, mas os personagens não sabem disso no início
+- Eles despertaram em locais variados pela cidade — hospitais, quartos de hotel, estações do metrô, becos
+
 ---
 
 ## OS CINCO CLÃS
 
 ### Clã Néant — Mental · Psíquico
-**Líder:** Isabeau du Néant — *La Dame* — 547 anos — abraçada ~1478 — aparência 25 anos
+**Líder:** Isabeau du Néant — *La Dame* — 479 anos — abraçada 1478 — aparência 25 anos
+**Origem:** Era assistente de um inquisidor no sul da França. A devoção religiosa ficou para trás cedo, mas a Igreja era o único lugar onde uma mulher inteligente chegava perto de algo que valesse a pena. Ficou boa em ouvir confissões que ninguém deveria ouvir.
 **Cobertura atual:** Conselheira espiritual/confessora em Paris
 **Poderes:** Leitura mental, sugestão, apagamento de memória, plantio de pensamentos, Ligação (fio entre duas mentes), Espelho (pessoa vê seus próprios pensamentos como externos)
 **Dificuldades:** Fácil (sentir emoções, detectar mentiras, criar confiança), Médio (leitura superficial, sugestão simples, apagar memória recente, Ligação), Difícil (memórias profundas, crenças complexas, compulsão longa, Espelho), Muito difícil (sonhos, quebrar mentes, ler mentes resistentes)
@@ -100,35 +108,36 @@
 **Em Paris:** 21 confirmados + 4 Errantes conhecidos
 
 ### Clã Beaumont — Social · Manipulação
-**Líder:** Rémi Baumont — *Le Prince* — 320 anos — abraçado ~1705 — aparência 36 anos
-**Cobertura atual:** Playboy herdeiro, anfitrião social
+**Líder:** Rémi Beaumont — *Le Prince* — 263 anos — abraçado 1705 — aparência 36 anos
+**Origem:** Era homem da corte no final do reinado de Luís XIV. Não da primeira linha da nobreza, mas do tipo mais útil — presente em todos os ambientes, convidado para todos os jantares, esquecido em nenhuma lista. Estava em Paris em 1698, ainda mortal, quando a carnificina aconteceu. Sete anos depois foi abraçado. Nunca falou sobre o que viu naquelas três noites.
+**Cobertura atual:** Herdeiro aristocrático, anfitrião social
 **Poderes:** Compulsão vocal, aura de confiança, charme prolongado, Detecção de mentiras (tom e microexpressões), Apagamento pós-manipulação, Multidão (mover grupos emocionalmente)
 **Dificuldades:** Fácil (impressão de confiança, ler hierarquia social), Médio (compulsão vocal, aura prolongada, dependência gradual, Detecção), Difícil (charme por dias, apagamento pós-manipulação, lealdade fabricada, Multidão), Muito difícil (dependência permanente, agir contra interesse próprio, operar grupo inteiro)
 **Fraqueza:** Deterioração por isolamento — Conectado → Isolado → Privado → Faminto → Colapsado
 **Em Paris:** 18 confirmados + 6-7 Errantes
 
 ### Clã Braise — Físico · Combate
-**Líder:** Viktor Gregorovitch — *La Bête* — 139 anos — abraçado ~1886 — aparência 40 anos
+**Líder:** Viktor Gregorovitch — *La Bête* — 86 anos — abraçado 1886 — aparência 40 anos
+**Origem:** Era oficial do exército austro-húngaro. Carreira construída pela competência de alguém que não tinha sobrenome nobre para abrir portas. Assumiu a liderança do Braise depois que La Société Solaire eliminou o líder anterior. Havia um vazio e ele preencheu antes que alguém questionasse.
 **Cobertura atual:** Dono de bar no 11º arrondissement / executor informal da Corte
 **Poderes:** Força amplificada, absorção de impacto, regeneração, resistência a fogo/frio/veneno, Absorção (redistribuir impacto), Presença intimidadora (paralisia breve)
 **Dificuldades:** Fácil (força básica, absorver impacto, sentir perigo), Médio (força sustentada, regeneração menor, resistência extrema, Absorção), Difícil (regeneração severa, força destrutiva, Presença), Muito difícil (regeneração permanente, força máxima sustentada)
 **Fraqueza:** Desregulação física progressiva — Calibrado → Tenso → Desregulado → Incontido → Frenesi
 **Em Paris:** 28 confirmados + 5 Errantes (monitorados ativamente)
-**Nota:** Viktor não foi o líder original. Assumiu em 1962 após La Société Solaire eliminar o líder anterior.
 
 ### Clã Voile — Sombra · Ilusão
-**Líder:** Marguerite Voile — *La Voix* — 230 anos — abraçada ~1795 — aparência 30 anos
+**Líder:** Marguerite Voile — *La Voix* — 167 anos — abraçada 1795 — aparência 30 anos
+**Origem:** Cantora nos salões de Paris durante os últimos anos da Revolução Francesa. Sobreviveu às mudanças de regime pela mesma razão que sempre sobreviveu a tudo: lendo o ambiente antes que o ambiente mudasse. Foi abraçada por Étienne Voile, fundador do clã, num casamento que começou como conveniência política e terminou de maneira muito menos clara. O fundador e as outras esposas foram morrendo, uma por uma, em circunstâncias nunca completamente explicadas. Marguerite foi a última a sobreviver e assumiu o clã.
 **Cobertura atual:** Cantora de jazz em clube noturno no 6º arrondissement
-**História:** Era cantora, foi abraçada pelo fundador do clã Étienne Voile como esposa de conveniência. O fundador e as outras esposas foram morrendo misteriosamente. Marguerite foi a única a sobreviver e assumiu o clã.
 **Poderes:** Camuflagem, ilusão localizada, manipulação de luz, movimento silencioso, Projeção (ilusões de pessoas/objetos), Máscara (assumir aparência de outra pessoa)
 **Dificuldades:** Fácil (suprimir presença, manipular luz, movimento silencioso), Médio (camuflagem completa, ilusão simples, Projeção), Difícil (ilusão sustentada, apagar presença da memória, Máscara), Muito difícil (ilusão de ambiente inteiro, identidade falsa por dias)
 **Fraqueza:** Compulsão pela invisibilidade — Estável → Habituado → Compulsivo → Instintivo → Dissolvido
 **Em Paris:** 15 confirmados + 3 Errantes
 
 ### Clã Ténèbre — Sangue · Cura
-**Líder:** Theodore Harlow — *Le Docteur* — 168 anos — abraçado ~1857 — aparência 52 anos
+**Líder:** Theodore Harlow — *Le Docteur* — 127 anos — abraçado 1857 — aparência 52 anos
+**Origem:** Americano, cirurgião, chegou a Paris nos anos 1850 para estudar medicina europeia. Encontrou os Ténèbre por investigação científica — um paciente que curou rápido demais, uma amostra de sangue que não se comportava como deveria. Pediu o Abraço ele mesmo depois de três anos de pesquisa. A vampira que o abraçou ficou surpresa. Theodore chegou à reunião com anotações.
 **Cobertura atual:** Pesquisador independente sem vínculo institucional
-**História:** Americano, cirurgião, chegou a Paris nos anos 1850 para estudar medicina europeia. Descobriu os vampiros por investigação científica e pediu o Abraço ele mesmo após três anos de pesquisa. Assumiu a liderança do grupo décadas depois.
 **Origem do clã:** O Ténèbre não tinha fundador único — era um grupo que sobreviveu à carnificina de 1698 e assinou o Pacto coletivamente.
 **Poderes:** Sentido de sangue, cura, elo sanguíneo, coagulação, Dependência (sangue preparado para criar vínculo), Veneno (envenenar o próprio sangue), Aceleração/detenção de cura, Detecção de Grande Fadiga
 **Dificuldades:** Fácil (sentir sangue, saúde, detectar Fadiga), Médio (curar ferimentos menores, elo sanguíneo, coagulação, Dependência básica, Veneno básico), Difícil (acelerar/deter cura alheia, sentir fraquezas específicas, rastrear rastro sanguíneo, Dependência intensa), Muito difícil (curar ferimentos permanentes, dependência irreversível, veneno letal)
@@ -152,71 +161,85 @@
 
 | Personagem | Clã | Idade | Alcunha | Aparência |
 |---|---|---|---|---|
-| **Isabeau du Néant** | Néant | 547 anos | La Dame | 25 anos |
-| **Rémi Baumont** | Beaumont | 320 anos | Le Prince | 36 anos |
-| **Viktor Gregorovitch** | Braise | 139 anos | La Bête | 40 anos |
-| **Marguerite Voile** | Voile | 230 anos | La Voix | 30 anos |
-| **Theodore Harlow** | Ténèbre | 168 anos | Le Docteur | 52 anos |
+| **Isabeau du Néant** | Néant | 479 anos | La Dame | 25 anos |
+| **Rémi Beaumont** | Beaumont | 263 anos | Le Prince | 36 anos |
+| **Viktor Gregorovitch** | Braise | 86 anos | La Bête | 40 anos |
+| **Marguerite Voile** | Voile | 167 anos | La Voix | 30 anos |
+| **Theodore Harlow** | Ténèbre | 127 anos | Le Docteur | 52 anos |
 
 ---
 
 ## NPCS E AMEAÇAS
 
-**Séraphin** — É Jean-Baptiste Moreau (Le Compositeur). Abraçou os jogadores. Sabe mais do que qualquer outro ser vivo sobre Le Premier e o Pacto de 1698.
+**Séraphin** — É Jean-Baptiste Moreau (Le Compositeur). Responsável pelos Abraços não autorizados que criaram os PCs. Os personagens não sabem disso. Sabe mais do que qualquer outro ser vivo sobre Le Premier e o Pacto de 1698.
 
-**Les Dévoreurs** — Liderados por Armand Voss (expulso em 1998). Instrumentos inconscientes de Le Premier via *La Voix Ancienne*.
+**Les Dévoreurs** — Liderados por Armand Voss (92 anos, expulso em 1917). Instrumentos inconscientes de Le Premier via *La Voix Ancienne*.
 
-**La Société Solaire** — Fundada 1887. Liderada por Madame Leclair (identidade desconhecida). Eliminaram 8 Eternos em 10 anos. Têm informante dentro da Corte.
+**La Société Solaire** — Fundada 1887. Liderada por Madame Leclair (identidade desconhecida). Eliminaram múltiplos Eternos nas últimas décadas. Possuem arquivo chamado **Le Catalogue** — os Eternos mais antigos ficam inquietos quando ouvem o nome. Há informante dentro da Corte.
 
-**L'Oubli** — Vampiros em Grande Fadiga. Instinto puro. Eliminação imediata é política oficial. Viktor lidera as equipes desde 1980.
+**L'Oubli** — Vampiros em Grande Fadiga. Instinto puro. Eliminação imediata é política oficial. Viktor lidera as equipes desde 1880.
 
 **L'Ancienne** — Ser muito antigo integrado em Paris. Arquivos rasurados. Pode ser lenda.
 
 ---
 
-## LES TOUCHÉS (OS TOCADOS)
+## A SEMANA QUE MUDA TUDO
 
-Descendentes humanos de relações entre vampiros e humanos. Não abraçados — produto de paixão ou descuido ao longo de séculos. Indiferente ao Pacto — vampiros imortais se apaixonam.
+Ao longo de poucos dias, novos vampiros começaram a surgir por diferentes regiões de Paris sem qualquer autorização oficial da Corte. Alguns despertaram em hospitais, quartos de hotel, estações do metrô, apartamentos abandonados, becos molhados pela chuva.
 
-**Status:** Proibidos pela Corte. Existir como Touché é evidência de violação das Três Leis.
-**Manifestação:** Imprevisível — pode saltar gerações.
-**Traços:** Atração involuntária de vampiros, instinto aguçado, sonhos/visões de memórias da linhagem, resistência à compulsão, cicatrização acelerada.
-**Por que são caçados:** Dévoreurs os eliminam por crença. Société Solaire os recruta ou elimina. Le Premier rastreia os de linhagem mais antiga como possíveis âncoras.
+Nenhum deles lembrava exatamente o que havia acontecido nas horas anteriores ao Abraço.
 
----
-
-## LES ERRANTS (OS ERRANTES)
-
-Vampiros fora da estrutura da Corte — expulsos ou por escolha. Mantêm poderes do clã e obrigação das Três Leis. Perdem acesso ao Arquivo, proteção institucional e credibilidade. A Corte os monitora como ameaça.
+O Conseil percebeu rápido demais que aquilo não era coincidência. Abraços não autorizados significam risco para o Pacto e para o segredo da existência vampírica.
 
 ---
 
 ## O MOMENTO ATUAL (SEM SPOILERS)
 
-- Pacto expirado há 87 anos. Le Premier ficou décadas recuperando força.
+- Pacto expirado há 14 anos. Le Premier ficou esse tempo recuperando força.
 - Rachadura no Conselho: Viktor x Rémi em impasse
-- Isabeau ficou 3 noites isolada — nunca aconteceu em 200 anos
+- Isabeau ficou 3 noites isolada — nunca aconteceu em mais de um século
 - Ataques dos Dévoreurs aumentaram 40% em 6 meses, mais cirúrgicos
-- Société Solaire eliminou 2 Établis em 3 meses
+- La Société Solaire eliminou Établis recentemente; possuem "Le Catalogue"
 - Rumor: informante dentro da Corte
-- Rumor: Nouveau-Né entrou em Grande Fadiga com apenas 4 anos
-- Rumor: alguém adicionou documento ao Arquivo de 1698
-- Séraphin convocou os personagens para reunião no 8º arrondissement
+- Rumor: Nouveau-Né entrou em Grande Fadiga com menos de 5 anos
+- Rumor: Rémi Beaumont visto conversando com humano usando aliança com símbolo do sol em Montmartre — sem glamour, sem compulsão
+- Rumor: lacre do Arquivo de 1698 rompido — uma folha em latim medieval apareceu entre os documentos
+- Os PCs são os recém-abraçados não autorizados que o Conseil tenta identificar
 
 ---
 
 ## O SISTEMA
 
-**6 Atributos (1–5):** SOC, EGO, SIG, FIS, VEL, HP (30 + FIS×5)
-**Criação:** 15 pontos distribuídos, máximo 4 em qualquer atributo
+**6 Atributos (0–5):** SOC, EGO, SIG, FIS, VEL, HIP (Vitalidade)
+**Criação:** 15 pontos distribuídos
+- Máximo: 2 atributos com valor 5
+- Mínimo: pelo menos 1 atributo zerado (limitação real do personagem)
 **Rolagem:** dados = atributo relevante. Sucesso em 4, 5 ou 6.
 - 0 sucessos: falha + complicação
 - 1–2: funciona com custo
 - 3+: sucesso limpo. 5+: vantagem adicional
 
+**HIP — Vitalidade:** Representa quanto o vampiro consegue suportar dano, fome, desgaste sobrenatural e violência antes de entrar em colapso físico ou frenesi.
+
 **Dificuldades dos poderes:** Fácil / Médio / Difícil / Muito difícil — narrador calibra com base no personagem e contexto.
 
-**Consequências:** Frenesi (HP < 10), Exposição (3 fichas = Société), Dívida de Sangue, Sinal da Fadiga (deterioração de EGO)
+**Consequências:** Frenesi (HIP esgotado), Exposição (3 fichas = Société), Dívida de Sangue, Sinal da Fadiga (deterioração de EGO)
+
+---
+
+## A FICHA
+
+**Campos obrigatórios:**
+- NOME COMPLETO (nome adequado ao período e origem)
+- NATUREZA (essência do personagem — uma palavra ou frase curta)
+- IDADE REAL (idade humana antes do Abraço)
+- APARÊNCIA e PP (descrição física + moda dos anos 30 + Photoplayer)
+- OCUPAÇÃO (vida antes da transformação)
+- CLÃ
+- RELAÇÕES (máximo: 1 familiar + 1 amorosa com PC ou NPC)
+- BACKGROUND (inclui descrição do despertar pós-Abraço — onde acordou, primeira reação, circunstâncias; as horas anteriores são apagadas)
+- ATRIBUTOS (15 pontos; máx 2 com valor 5; mín 1 zerado)
+- GANCHOS NARRATIVOS (enviados em privado ao Narrateur)
 
 ---
 
@@ -233,8 +256,6 @@ Vampiros fora da estrutura da Corte — expulsos ou por escolha. Mantêm poderes
 - `sistema.html` — Regras
 - `briefing-jogador.html` — Resumo para jogadores
 
-**Para adicionar personagem:** duplicar `perfil.html`, renomear para `perfil-nomepersonagem.html`, editar dados, fazer upload no GitHub, linkar no `personagens.html`.
-
 ---
 
 ## YOBLE — RESTRIÇÕES CONFIRMADAS
@@ -245,26 +266,7 @@ Vampiros fora da estrutura da Corte — expulsos ou por escolha. Mantêm poderes
 
 ---
 
-## ARQUIVOS YOBLE CANÔNICOS
-
-| Arquivo | Descrição |
-|---|---|
-| `yoble_nav.html` | Card de navegação com logo, links e botões Fórum/Entrar/Sair |
-| `yoble_guia.html` | Guia do universo: header hover dropdown 4 colunas, fundo creme |
-| `yoble_turno_jogador.html` | Turno de jogador: header escuro, corpo creme, stats hover |
-| `yoble_turno.html` | Turno do narrador |
-| `yoble_post.html` | Post de admin |
-
-**Logo:** `https://64.media.tumblr.com/8957f7314f33baca95953b37ac967eea/8b8ece2738375144-63/s250x400/f0f9d3d405de1a87187f45a57aeb7f98811e25f2.png`
-
-**Links da comunidade (ID 307424):**
-- Fórum: `/Main/communities/forum/307424`
-- Entrar: `/Main/communities/add-member/307424`
-- Sair: `/Main/communities/out-member/307424`
-
----
-
 ## DOCUMENTOS WORD
 
-- `LaCour_Mestre_v7.docx` — Escudo do mestre com todos os segredos
-- `LaCour_Jogadores_v7.docx` — Guia do jogador sem spoilers
+- `LaCour_Mestre_v9.docx` — Escudo do mestre com todos os segredos
+- `LaCour_Jogadores_v9.docx` — Guia do jogador sem spoilers
